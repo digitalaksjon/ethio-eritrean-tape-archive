@@ -15,6 +15,7 @@ import siteSettings from './documents/siteSettings'
 // Object types
 import trackReference from './objects/trackReference'
 import genreReference from './objects/genreReference'
+import recordLabelReference from './objects/recordLabelReference'
 import instrumentReference from './objects/instrumentReference'
 import bodyPortableText from './objects/bodyPortableText'
 import bioPortableText from './objects/bioPortableText'
@@ -41,11 +42,11 @@ export default createSchema({
     trackReference,
     instrumentReference,
     genreReference,
+    recordLabelReference,
     authorReference,
     bodyPortableText,
     bioPortableText,
-    excerptPortableText,
-    
+    excerptPortableText
 
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas

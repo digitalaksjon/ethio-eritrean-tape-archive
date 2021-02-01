@@ -1,5 +1,5 @@
 import { GiAudioCassette } from 'react-icons/gi'
-import {format} from 'date-fns'
+import { format } from 'date-fns'
 
 export default {
   name: 'album',
@@ -58,7 +58,7 @@ export default {
       name: 'releaseDate',
       type: 'date',
       title: 'Release date'
-    }, 
+    },
     {
       name: 'genres',
       type: 'array',
@@ -70,9 +70,14 @@ export default {
       ]
     },
     {
-      title: 'Record label',
       name: 'recordLabel',
-      type: 'string'
+      type: 'array',
+      title: 'Record label',
+      of: [
+        {
+          type: 'recordLabelReference'
+        }
+      ]
     },
     {
       name: 'musicians',
@@ -88,12 +93,12 @@ export default {
       title: 'Contributor',
       name: 'contributor',
       type: 'string'
-    },        
+    },
     {
       title: 'Country / Region',
       name: 'country',
       type: 'string'
-    },     
+    },
     {
       name: 'excerpt',
       type: 'excerptPortableText',
@@ -150,7 +155,7 @@ export default {
       slug: 'slug',
       media: 'frontCover'
     },
-    prepare ({title = 'No title', publishedAt, slug = {}, media}) {
+    prepare({ title = 'No title', publishedAt, slug = {}, media }) {
       const dateSegment = format(publishedAt, 'YYYY/MM')
       const path = `/${dateSegment}/${slug.current}/`
       return {
