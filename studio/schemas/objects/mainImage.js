@@ -6,14 +6,7 @@ export default {
     hotspot: true
   },
   fields: [
-    {
-      name: 'caption',
-      type: 'string',
-      title: 'Caption',
-      options: {
-        isHighlighted: true
-      }
-    },
+
     {
       name: 'alt',
       type: 'string',

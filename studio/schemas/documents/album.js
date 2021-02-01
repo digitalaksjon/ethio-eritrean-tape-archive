@@ -2,7 +2,7 @@ import { GiAudioCassette } from 'react-icons/gi'
 import {format} from 'date-fns'
 
 export default {
-  name: 'tape',
+  name: 'album',
   type: 'document',
   title: 'Cassette Tape',
   icon: GiAudioCassette,
@@ -10,8 +10,8 @@ export default {
     {
       name: 'title',
       type: 'string',
-      title: 'Title',
-      description: 'Titles should be catchy, descriptive, and not too long'
+      title: 'Album Title',
+      description: 'This is the title of the tape'
     },
     {
       name: 'slug',
@@ -30,10 +30,70 @@ export default {
       description: 'This can be used to schedule post for publishing'
     },
     {
-      name: 'mainImage',
-      type: 'mainImage',
-      title: 'Main image'
+      name: 'description',
+      type: 'bodyPortableText',
+      title: 'Description'
     },
+    {
+      name: 'frontCover',
+      type: 'mainImage',
+      title: 'Front Cover'
+    },
+    {
+      name: 'backCover',
+      type: 'mainImage',
+      title: 'Back Cover'
+    },
+    {
+      name: 'tracks',
+      title: 'Tracks',
+      type: 'array',
+      of: [
+        {
+          type: 'trackReference'
+        }
+      ]
+    },
+    {
+      name: 'releaseDate',
+      type: 'date',
+      title: 'Release date'
+    }, 
+    {
+      name: 'genres',
+      type: 'array',
+      title: 'Genres',
+      of: [
+        {
+          type: 'genreReference'
+        }
+      ]
+    },
+    {
+      title: 'Record label',
+      name: 'recordLabel',
+      type: 'string'
+    },
+    {
+      name: 'musicians',
+      type: 'array',
+      title: 'Musicians',
+      of: [
+        {
+          type: 'musician'
+        }
+      ]
+    },
+    {
+      title: 'Contributor',
+      name: 'contributor',
+      type: 'string'
+    },        
+    {
+      title: 'Country / Region',
+      name: 'country',
+      type: 'string'
+    },     
     {
       name: 'excerpt',
       type: 'excerptPortableText',
@@ -45,29 +105,12 @@ export default {
       name: 'authors',
       title: 'Authors',
       type: 'array',
+      description: 'Who ',
       of: [
         {
           type: 'authorReference'
         }
       ]
-    },
-    {
-      name: 'categories',
-      type: 'array',
-      title: 'Categories',
-      of: [
-        {
-          type: 'reference',
-          to: {
-            type: 'category'
-          }
-        }
-      ]
-    },
-    {
-      name: 'body',
-      type: 'bodyPortableText',
-      title: 'Body'
     }
   ],
   orderings: [
@@ -105,7 +148,7 @@ export default {
       title: 'title',
       publishedAt: 'publishedAt',
       slug: 'slug',
-      media: 'mainImage'
+      media: 'frontCover'
     },
     prepare ({title = 'No title', publishedAt, slug = {}, media}) {
       const dateSegment = format(publishedAt, 'YYYY/MM')
