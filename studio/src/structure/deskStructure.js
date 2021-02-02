@@ -47,15 +47,15 @@ export default () =>
   S.list()
     .title('Content')
     .items([
-      S.listItem()
-        .title('Settings')
-        .icon(MdSettings)
-        .child(
-          S.editor()
-            .id('siteSettings')
-            .schemaType('siteSettings')
-            .documentId('siteSettings')
-        ),
+      // `S.documentTypeListItems()` returns an array of all the document types
+      // defined in schema.js. We filter out those that we have
+      // defined the structure above.
+      ...S.documentTypeListItems().filter(
+        listItem =>
+          !['category', 'author', 'post', 'siteSettings'].includes(
+            listItem.getId()
+          )
+      ),
       S.divider(),
       S.listItem()
         .title('Blog posts')
@@ -72,13 +72,15 @@ export default () =>
         .icon(MdLocalOffer)
         .schemaType('category')
         .child(S.documentTypeList('category').title('Categories')),
-      // `S.documentTypeListItems()` returns an array of all the document types
-      // defined in schema.js. We filter out those that we have
-      // defined the structure above.
-      ...S.documentTypeListItems().filter(
-        listItem =>
-          !['category', 'author', 'post', 'siteSettings'].includes(
-            listItem.getId()
-          )
-      )
+        S.divider(),
+        S.listItem()
+        .title('Settings')
+        .icon(MdSettings)
+        .child(
+          S.editor()
+            .id('siteSettings')
+            .schemaType('siteSettings')
+            .documentId('siteSettings')
+        ),
+
     ])

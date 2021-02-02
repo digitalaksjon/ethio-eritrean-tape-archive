@@ -90,9 +90,25 @@ export default {
       ]
     },
     {
-      title: 'Contributor',
+
       name: 'contributor',
-      type: 'string'
+      type: 'string',
+      title: 'Contributor',
+      of: [
+        {
+          type: 'contributorReference'
+        }
+      ]
+    },
+    {
+      name: 'distributor',
+      type: 'string',
+      title: 'Distributor',
+      of: [
+        {
+          type: 'distributorReference'
+        }
+      ]
     },
     {
       title: 'Country / Region',
@@ -105,17 +121,6 @@ export default {
       title: 'Excerpt',
       description:
         'This ends up on summary pages, on Google, when people share your post in social media.'
-    },
-    {
-      name: 'authors',
-      title: 'Authors',
-      type: 'array',
-      description: 'Who ',
-      of: [
-        {
-          type: 'authorReference'
-        }
-      ]
     }
   ],
   orderings: [

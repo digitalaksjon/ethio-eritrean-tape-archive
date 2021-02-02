@@ -16,6 +16,8 @@ import siteSettings from './documents/siteSettings'
 import trackReference from './objects/trackReference'
 import genreReference from './objects/genreReference'
 import recordLabelReference from './objects/recordLabelReference'
+import contributorReference from './objects/contributorReference'
+import distributorReference from './objects/distributorReference'
 import instrumentReference from './objects/instrumentReference'
 import bodyPortableText from './objects/bodyPortableText'
 import bioPortableText from './objects/bioPortableText'
@@ -43,6 +45,8 @@ export default createSchema({
     instrumentReference,
     genreReference,
     recordLabelReference,
+    contributorReference,
+    distributorReference,
     authorReference,
     bodyPortableText,
     bioPortableText,
