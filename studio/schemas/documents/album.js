@@ -2,7 +2,7 @@ import { GiAudioCassette } from 'react-icons/gi'
 import { format } from 'date-fns'
 
 export default {
-  name: 'tape',
+  name: 'album',
   type: 'document',
   title: 'Cassette Tape',
   icon: GiAudioCassette,
