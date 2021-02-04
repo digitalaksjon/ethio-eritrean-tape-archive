@@ -20,7 +20,6 @@ interface FeaturedCardProps {
   description?: string;
   url: string;
   publishedAt: Date;
-  tags?: [];
   className?: string;
   imageType?: 'fixed' | 'fluid';
   overlay?: boolean;
@@ -31,7 +30,6 @@ const FeaturedCard: React.FunctionComponent<FeaturedCardProps> = ({
   title,
   description,
   url,
-  tags,
   className,
   publishedAt,
   imageType,
@@ -66,17 +64,7 @@ const FeaturedCard: React.FunctionComponent<FeaturedCardProps> = ({
       )}
 
       <PostDetails className="post_details">
-        <PostMeta>
-          {tags == null || overlay == true ? null : (
-            <PostTags className="post_tags">
-              {tags.map((tag: string, index: number) => (
-                <Link key={index} to={`/tags/${_.kebabCase(tag)}/`}>
-                  {`#${tag}`}
-                </Link>
-              ))}
-            </PostTags>
-          )}
-        </PostMeta>
+
 
         <PostTitle className="post_title">
           <Link to={getBlogUrl(publishedAt, url)}>{title}</Link>
