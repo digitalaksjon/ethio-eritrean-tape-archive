@@ -14,6 +14,12 @@ export default {
       description: 'This is the title of the tape'
     },
     {
+      name: 'artist',
+      type: 'string',
+      title: 'Main Artist',
+      description: 'This is the main artist on the tape'
+    },
+    {
       name: 'slug',
       type: 'slug',
       title: 'Slug',
@@ -90,7 +96,6 @@ export default {
       ]
     },
     {
-
       name: 'contributor',
       type: 'string',
       title: 'Contributor',

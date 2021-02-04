@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Link } from 'gatsby';
 import _ from 'lodash';
-import Img from 'gatsby-image';
+import {buildImageObj, getBlogUrl} from '../../lib/helpers'
+import {imageUrlFor} from '../../lib/image-url'
 import {
   FeaturedCardWrapper,
   PostPreview,
@@ -18,6 +19,7 @@ interface FeaturedCardProps {
   title: string;
   description?: string;
   url: string;
+  publishedAt: Date;
   tags?: [];
   className?: string;
   imageType?: 'fixed' | 'fluid';
@@ -31,6 +33,7 @@ const FeaturedCard: React.FunctionComponent<FeaturedCardProps> = ({
   url,
   tags,
   className,
+  publishedAt,
   imageType,
   overlay,
   ...props
@@ -44,17 +47,20 @@ const FeaturedCard: React.FunctionComponent<FeaturedCardProps> = ({
   if (className) {
     addClass.push(className);
   }
-
+  console.log(publishedAt)
   return (
     <FeaturedCardWrapper className={addClass.join(' ')} {...props}>
       {image == null ? null : (
         <PostPreview className="post_preview">
           <Link to={url}>
-            {imageType === 'fluid' ? (
-              <Img fluid={image} alt="post preview" />
-            ) : (
-              <Img fixed={image} alt="post preview" />
-            )}
+          <img
+            src={imageUrlFor(buildImageObj(image))
+              .width(600)
+              .height(400)          
+              .auto('format')
+              .url()}
+            alt={image.alt}
+          />
           </Link>
         </PostPreview>
       )}
@@ -73,7 +79,7 @@ const FeaturedCard: React.FunctionComponent<FeaturedCardProps> = ({
         </PostMeta>
 
         <PostTitle className="post_title">
-          <Link to={url}>{title}</Link>
+          <Link to={getBlogUrl(publishedAt, url)}>{title}</Link>
         </PostTitle>
         {overlay == true ? (
           ''
