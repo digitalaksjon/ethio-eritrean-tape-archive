@@ -8,7 +8,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 import author from './documents/author'
 import category from './documents/category'
 import post from './documents/post'
-import album from './documents/album'
+import tape from './documents/tape'
 import musician from './documents/musician'
 import siteSettings from './documents/siteSettings'
 
@@ -38,7 +38,7 @@ export default createSchema({
     musician,
     category,
     author,
-    album,
+    tape,
     siteSettings,
     mainImage,
     trackReference,
