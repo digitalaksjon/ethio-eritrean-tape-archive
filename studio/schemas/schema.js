@@ -10,20 +10,19 @@ import category from './documents/category'
 import post from './documents/post'
 import album from './documents/album'
 import musician from './documents/musician'
+import distributor from './documents/distributor'
+import instrument from './documents/instrument'
 import siteSettings from './documents/siteSettings'
+import recordLabel from './documents/recordLabel'
+import genre from './documents/genre'
 
 // Object types
 import trackReference from './objects/trackReference'
-import genreReference from './objects/genreReference'
-import recordLabelReference from './objects/recordLabelReference'
 import contributorReference from './objects/contributorReference'
-import distributorReference from './objects/distributorReference'
-import instrumentReference from './objects/instrumentReference'
 import bodyPortableText from './objects/bodyPortableText'
 import bioPortableText from './objects/bioPortableText'
 import excerptPortableText from './objects/excerptPortableText'
 import mainImage from './objects/mainImage'
-import authorReference from './objects/authorReference'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -35,19 +34,18 @@ export default createSchema({
     // The following are document types which will appear
     // in the studio.
     post,
+    album,
     musician,
     category,
     author,
-    album,
+    genre,
+    recordLabel,
+    distributor,
+    instrument,
     siteSettings,
     mainImage,
     trackReference,
-    instrumentReference,
-    genreReference,
-    recordLabelReference,
     contributorReference,
-    distributorReference,
-    authorReference,
     bodyPortableText,
     bioPortableText,
     excerptPortableText

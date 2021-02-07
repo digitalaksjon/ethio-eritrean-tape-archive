@@ -1,7 +1,10 @@
+import { GiDrum } from 'react-icons/gi'
+
 export default {
-  name: 'distributorReference',
-  type: 'object',
-  title: 'Distributor',
+  name: 'instrument',
+  type: 'document',
+  title: 'Instruments',
+  icon: GiDrum,
   fields: [
     {
       name: 'name',

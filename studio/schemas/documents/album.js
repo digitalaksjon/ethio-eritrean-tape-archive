@@ -4,7 +4,7 @@ import { format } from 'date-fns'
 export default {
   name: 'album',
   type: 'document',
-  title: 'Cassette Tape',
+  title: 'Cassette Tapes',
   icon: GiAudioCassette,
   fields: [
     {
@@ -66,17 +66,17 @@ export default {
       title: 'Release date'
     },
     {
-      name: 'genre',
+      name: 'genres',
       type: 'array',
-      title: 'Genre',
+      title: 'Genres',
       of: [
         {
           title: 'Genre',
           name: 'name',
           type: 'reference',
           weak: true,
-          to: [{ type: 'genreReference' }],
-          description: 'Which genre does the tape belong to'
+          to: [{ type: 'genre' }],
+          description: 'Which genres does the tape belong to'
         }
       ]
     },
@@ -84,10 +84,15 @@ export default {
     {
       name: 'recordLabel',
       type: 'array',
-      title: 'Record label',
+      title: 'Record labels',
       of: [
         {
-          type: 'recordLabelReference'
+          title: 'Record label',
+          name: 'name',
+          type: 'reference',
+          weak: true,
+          to: [{ type: 'recordLabel' }],
+          description: 'Which record labels does the tape belong to'
         }
       ]
     },
@@ -97,7 +102,12 @@ export default {
       title: 'Musicians',
       of: [
         {
-          type: 'musician'
+          title: 'Musician',
+          name: 'name',
+          type: 'reference',
+          weak: true,
+          to: [{ type: 'musician' }],
+          description: 'Who played on this tape'
         }
       ]
     },
@@ -113,11 +123,16 @@ export default {
     },
     {
       name: 'distributor',
-      type: 'string',
-      title: 'Distributor',
+      type: 'array',
+      title: 'Distributors',
       of: [
         {
-          type: 'distributorReference'
+          title: 'Distributor name',
+          name: 'name',
+          type: 'reference',
+          weak: true,
+          to: [{ type: 'distributor' }],
+          description: 'Which distributors does the tape belong to'
         }
       ]
     },

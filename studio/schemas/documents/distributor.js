@@ -1,7 +1,10 @@
+import { BiNetworkChart } from 'react-icons/bi'
+
 export default {
-  name: 'recordLabelReference',
-  type: 'object',
-  title: 'Record label',
+  name: 'distributor',
+  type: 'document',
+  title: 'Distributors',
+  icon: BiNetworkChart,
   fields: [
     {
       name: 'name',

@@ -1,7 +1,10 @@
+import { BiMusic } from 'react-icons/bi'
+
 export default {
-  name: 'genreReference',
-  type: 'object',
-  title: 'Genre reference',
+  name: 'genre',
+  type: 'document',
+  title: 'Genres',
+  icon: BiMusic,
   fields: [
     {
       name: 'name',

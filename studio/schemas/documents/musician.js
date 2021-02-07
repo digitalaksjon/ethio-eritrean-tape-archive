@@ -1,11 +1,11 @@
-import { GiDrum } from 'react-icons/gi'
+import { GiPerson } from 'react-icons/gi'
 import {format} from 'date-fns'
 
 export default {
   name: 'musician',
   type: 'document',
-  title: 'Musician',
-  icon: GiDrum,
+  title: 'Musicians',
+  icon: GiPerson,
   fields: [
     {
       name: 'fullName',
@@ -19,68 +19,31 @@ export default {
       title: 'Instruments',
       of: [
         {
-          type: 'instrumentReference'
-        }
-      ]
-    },
-    {
-      name: 'authors',
-      title: 'Authors',
-      type: 'array',
-      description: 'Who ',
-      of: [
-        {
-          type: 'authorReference'
+          title: 'Instrument',
+          name: 'name',
+          type: 'reference',
+          weak: true,
+          to: [{ type: 'instrument' }],
+          description: 'Which instruments does the musician play?'
         }
       ]
     },
     {
       name: 'publishedAt',
-      type: 'datetime',
-      title: 'Published at',
-      description: 'This can be used to schedule post for publishing'
-    }
-  ],
-  orderings: [
-    {
-      name: 'publishingDateAsc',
-      title: 'Publishing date new–>old',
-      by: [
-        {
-          field: 'publishedAt',
-          direction: 'asc'
-        },
-        {
-          field: 'fullName',
-          direction: 'asc'
-        }
-      ]
-    },
-    {
-      name: 'publishingDateDesc',
-      title: 'Publishing date old->new',
-      by: [
-        {
-          field: 'publishedAt',
-          direction: 'desc'
-        },
-        {
-          field: 'fullName',
-          direction: 'asc'
-        }
-      ]
+      type: 'date',
+      title: 'Published at'
     }
   ],
   preview: {
     select: {
-      title: 'fullName'
+      title: 'fullName',
+      instrument0: 'instruments.0.name'
     },
-    prepare ({title = 'No title', publishedAt, slug = {}}) {
-      const dateSegment = format(publishedAt, 'YYYY/MM')
-      const path = `/${dateSegment}/${slug.current}/`
+    prepare: ({title, instrument0}) => {
+      const subtitle = instrument0
       return {
         title,
-        subtitle: publishedAt ? path : 'Missing publishing date'
+        subtitle: subtitle
       }
     }
   }

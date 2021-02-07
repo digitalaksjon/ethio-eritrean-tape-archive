@@ -1,7 +1,10 @@
+import { MdLabel } from 'react-icons/md'
+
 export default {
-  name: 'instrumentReference',
-  type: 'object',
-  title: 'Instrument reference',
+  name: 'recordLabel',
+  type: 'document',
+  title: 'Record labels',
+  icon: MdLabel,
   fields: [
     {
       name: 'name',
