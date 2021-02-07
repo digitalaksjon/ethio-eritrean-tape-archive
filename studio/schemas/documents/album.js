@@ -66,15 +66,21 @@ export default {
       title: 'Release date'
     },
     {
-      name: 'genres',
+      name: 'genre',
       type: 'array',
-      title: 'Genres',
+      title: 'Genre',
       of: [
         {
-          type: 'genreReference'
+          title: 'Genre',
+          name: 'name',
+          type: 'reference',
+          weak: true,
+          to: [{ type: 'genreReference' }],
+          description: 'Which genre does the tape belong to'
         }
       ]
     },
+
     {
       name: 'recordLabel',
       type: 'array',
