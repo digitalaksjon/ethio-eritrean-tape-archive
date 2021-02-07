@@ -20,7 +20,6 @@ export default {
       of: [
         {
           title: 'Instrument',
-          name: 'name',
           type: 'reference',
           weak: true,
           to: [{ type: 'instrument' }],

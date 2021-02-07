@@ -72,7 +72,6 @@ export default {
       of: [
         {
           title: 'Genre',
-          name: 'name',
           type: 'reference',
           weak: true,
           to: [{ type: 'genre' }],
@@ -88,7 +87,6 @@ export default {
       of: [
         {
           title: 'Record label',
-          name: 'name',
           type: 'reference',
           weak: true,
           to: [{ type: 'recordLabel' }],
@@ -103,7 +101,7 @@ export default {
       of: [
         {
           title: 'Musician',
-          name: 'name',
+
           type: 'reference',
           weak: true,
           to: [
@@ -130,7 +128,6 @@ export default {
       of: [
         {
           title: 'Distributor name',
-          name: 'name',
           type: 'reference',
           weak: true,
           to: [{ type: 'distributor' }],
