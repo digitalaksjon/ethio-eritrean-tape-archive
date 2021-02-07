@@ -37,13 +37,21 @@ export default {
   preview: {
     select: {
       title: 'fullName',
-      instrument0: 'instruments.0.name'
+      instrument0: 'instruments.0.name',
+      instrument1: 'instruments.1.name',
+      instrument2: 'instruments.2.name',
     },
-    prepare: ({title, instrument0}) => {
-      const subtitle = instrument0
+    prepare: ({title, instrument0, instrument1,instrument2}) => {
+
+
+      var subTitle = `${instrument0}`
+      if (instrument1) subTitle = `${instrument0}, ${instrument1}`
+      if (instrument2) subTitle = `${instrument0}, ${instrument1}, ${instrument2}`
+      
+
       return {
         title,
-        subtitle: subtitle
+        subtitle: subTitle
       }
     }
   }

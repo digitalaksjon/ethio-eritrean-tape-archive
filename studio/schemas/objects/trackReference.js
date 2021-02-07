@@ -20,8 +20,8 @@ export default {
     },
     {
       name: 'audioFile',
-      type: 'string',
-      title: 'Track number'
+      type: 'file',
+      title: 'Audio file (mp3)'
     },
     {
       name: 'previewLength',
@@ -31,7 +31,20 @@ export default {
   ],
   preview: {
     select: {
-      title: 'trackName'
+      title: 'trackName',
+      numInOrder: 'numInOrder',
+      lengthOfTrack: 'lengthOfTrack'
+    },
+    prepare: ({title, numInOrder,lengthOfTrack}) => {
+
+      var newTitle = numInOrder + '. ' + title 
+      var subTitle = `${lengthOfTrack}`
+      
+
+      return {
+        title: newTitle,
+        subtitle: subTitle
+      }
     }
   }
 }

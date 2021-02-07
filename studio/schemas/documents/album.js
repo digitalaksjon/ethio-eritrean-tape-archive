@@ -106,7 +106,9 @@ export default {
           name: 'name',
           type: 'reference',
           weak: true,
-          to: [{ type: 'musician' }],
+          to: [
+            { type: 'musician', }
+          ],
           description: 'Who played on this tape'
         }
       ]
