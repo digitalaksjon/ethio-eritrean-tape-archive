@@ -37,7 +37,7 @@ export const Logo = styled.div`
   img {
     display: block;
     max-width: 100%;
-    height: auto;
+    width: 100% !important; height: auto !important;
   }
 `;
 

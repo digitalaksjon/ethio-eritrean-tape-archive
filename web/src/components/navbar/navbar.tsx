@@ -14,7 +14,7 @@ import HeaderWrapper, {
   SearchCloseButton,
   NavSearchFromWrapper,
 } from './navbar.style';
-import LogoImage from '../../images/logo.png';
+import LogoImage from '../../images/logo.svg'
 
 type NavbarProps = {
   className?: string;
@@ -71,7 +71,7 @@ const Navbar: React.FunctionComponent<NavbarProps> = ({
         </DrawerProvider>
         <Logo>
           <Link to="/">
-            <img src={LogoImage} alt="logo" />
+            <img src={LogoImage} href="data:img/png;base64" alt="logo" />
           </Link>
         </Logo>
         <MenuWrapper>
