@@ -28,17 +28,23 @@ export const NavbarWrapper = styled.div`
 export const Logo = styled.div`
   margin-right: 50px;
   flex-shrink: 0;
+  img {
+    display: block;
+    max-width: 30%;
+    height: auto;
+  }
+
   @media (max-width: 990px) {
-    margin: 0 25px;
+    margin: 25px;
+    img {
+      max-width: 100%;
+    }
   }
   @media (max-width: 575px) {
     max-width: 90px;
   }
-  img {
-    display: block;
-    max-width: 100%;
-    width: 100% !important; height: auto !important;
-  }
+
+
 `;
 
 export const MenuWrapper = styled.div`
