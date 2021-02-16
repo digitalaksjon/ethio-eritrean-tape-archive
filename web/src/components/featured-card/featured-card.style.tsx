@@ -16,6 +16,11 @@ export const FeaturedCardWrapper = styled.div`
         bottom: 15px;
       }
     }
+    .read_more {
+      background-color: ${themeGet('colors.primaryHover', '#F26849')};
+      padding:10px;
+      transition: 0.3s ease-in-out;
+    }
   }
   &.overlay {
     &:hover {
@@ -140,16 +145,6 @@ export const ReadMore = styled.div`
     font-weight: 700;
 
     color: ${themeGet('colors.white', '#292929')};
-
-  }
-  &:hover {
-    background-color: ${themeGet('colors.primaryHover', '#F26849')};
-    padding:10px;
-    transition: 0.3s ease-in-out;
-    a {
-      font-size:14px;
-      transition: 0.2s ease-in-out;
-    }
 
   }
 `;

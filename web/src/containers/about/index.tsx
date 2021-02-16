@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import Image from 'gatsby-image';
+import LogoImage from '../../images/logo.png';
 import SocialProfile from '../../components/social-profile/social-profile';
 import {
   IoLogoFacebook,
@@ -63,7 +64,7 @@ const About: React.FunctionComponent<AboutProps> = (props) => {
   return (
     <AboutWrapper>
       <AboutPageTitle>
-        <h2>About StoryHub</h2>
+        <h2>About Ethio-Eritrean Tape Archive</h2>
         <p>
           StoryHub is a beautiful Gatsby Blog theme designed to showcase your
           work in style. Perfect for designers, artists, photographers and
@@ -72,7 +73,7 @@ const About: React.FunctionComponent<AboutProps> = (props) => {
       </AboutPageTitle>
 
       <AboutImage>
-        <Image fluid={Data.avatar.childImageSharp.fluid} alt="author" />
+        <img src={LogoImage} alt="logo" />
       </AboutImage>
 
       <AboutDetails>

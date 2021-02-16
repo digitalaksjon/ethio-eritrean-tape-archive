@@ -35,6 +35,12 @@ export const AboutPageTitle = styled.div`
 
 export const AboutImage = styled.div`
   margin-bottom: 90px;
+  width: 100%;
+  text-align:center;
+  img {
+    width: 50%;
+    margin:0 auto;
+  }
   @media (max-width: 990px) {
     margin-bottom: 60px;
   }

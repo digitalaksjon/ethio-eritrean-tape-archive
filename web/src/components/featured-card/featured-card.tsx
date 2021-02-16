@@ -70,12 +70,13 @@ const FeaturedCard: React.FunctionComponent<FeaturedCardProps> = ({
       )}
 
       <PostDetails className="post_details">
-
-
         <PostTitle className="post_title">
-
-          <Link to={getBlogUrl(publishedAt, url)}>{title} /<br /> {artist}</Link>
+          <Link to={getBlogUrl(publishedAt, url)}>{title}</Link>
         </PostTitle>
+
+        <div>{artist} (2010)</div>
+        <hr/>
+
         {overlay == true ? (
           ''
         ) : (
@@ -93,18 +94,7 @@ const FeaturedCard: React.FunctionComponent<FeaturedCardProps> = ({
         )}
         <PostMeta>
 
-        <div className="meta_line">Label: <span>
-          
-        {recordLabels.map(recordLabel => {
-            return recordLabel.name
-         
-        })}
-        </span></div>
-        <div className="meta_line">
-        {description.map(desc => {
-            return desc.text;
-        })}
-        </div>
+
         </PostMeta>
 
       </PostDetails>
