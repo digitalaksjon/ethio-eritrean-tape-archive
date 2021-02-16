@@ -71,7 +71,7 @@ const Navbar: React.FunctionComponent<NavbarProps> = ({
         </DrawerProvider>
         <Logo>
           <Link to="/">
-            <img src={LogoImage} alt="logo" />
+            <img src={LogoImage} alt="ethio-eritrean tape archive logo" />
           </Link>
         </Logo>
         <MenuWrapper>

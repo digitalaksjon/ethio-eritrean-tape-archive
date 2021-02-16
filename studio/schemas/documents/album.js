@@ -104,9 +104,7 @@ export default {
 
           type: 'reference',
           weak: true,
-          to: [
-            { type: 'musician', }
-          ],
+          to: [{ type: 'musician' }],
           description: 'Who played on this tape'
         }
       ]
@@ -181,18 +179,7 @@ export default {
   preview: {
     select: {
       title: 'title',
-      publishedAt: 'publishedAt',
-      slug: 'slug',
-      media: 'frontCover'
-    },
-    prepare({ title = 'No title', publishedAt, slug = {}, media }) {
-      const dateSegment = format(publishedAt, 'YYYY/MM')
-      const path = `/${dateSegment}/${slug.current}/`
-      return {
-        title,
-        media,
-        subtitle: publishedAt ? path : 'Missing publishing date'
-      }
+      subtitle: 'artist'
     }
   }
 }

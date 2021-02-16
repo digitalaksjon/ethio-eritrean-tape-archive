@@ -1,6 +1,6 @@
 const colors = {
   transparent: "transparent", // 0
-  black: "#292929", // 1
+  black: "#40403F", // 1
   white: "#ffffff", // 2
   textColor: "#292929", // 3
   lightTextColor: "#757575", // 4
@@ -11,6 +11,7 @@ const colors = {
   lightBorderColor: "#ededed", //9
   primary: "#F28241", // 10
   primaryHover: "##F26849", // 11
+
 }
 
 export default colors
