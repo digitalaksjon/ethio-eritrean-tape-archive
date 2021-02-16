@@ -58,7 +58,7 @@ const Intro: React.FunctionComponent<IntroProps> = (props) => {
     <IntroWrapper>
       <BgImage>ETHIO</BgImage>
       <IntroContentWrapper>
-        <IntroTitle>Stay on the story</IntroTitle>
+        <IntroTitle>Tapes from Ethiopia and Eritrea</IntroTitle>
         <Desciption>{about}</Desciption>
         <SocialProfile items={SocialLinks} />
       </IntroContentWrapper>
