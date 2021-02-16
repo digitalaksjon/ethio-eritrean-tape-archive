@@ -1,13 +1,11 @@
+import { graphql, useStaticQuery } from "gatsby"
 import * as React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import {buildImageObj} from '../../../lib/helpers'
-import {imageUrlFor} from '../../../lib/image-url'
 import FeaturedCard from "../../../components/featured-card/featured-card"
 import {
-  FeaturedPostWrapper,
-  FeaturedPostRow,
-  FeaturedPostCol,
-  SecTitle,
+  FeaturedPostCol, FeaturedPostRow, FeaturedPostWrapper,
+
+
+  SecTitle
 } from "./style"
 
 type FeaturedPostsProps = {}
@@ -16,54 +14,59 @@ type FeaturedPostsProps = {}
 
 const FeaturedPosts: React.FunctionComponent<FeaturedPostsProps> = (props) => {
 
-  const postData = useStaticQuery(graphql`
-    fragment SanityImage on SanityMainImage {
-      crop {
-        _key
-        _type
-        top
-        bottom
-        left
-        right
-      }
-      hotspot {
-        _key
-        _type
-        x
-        y
-        height
-        width
-      }
-      asset {
-        _id
-
-        
-      }
+  const albumData = useStaticQuery(graphql`
+  fragment SanityImage on SanityMainImage {
+    crop {
+      _key
+      _type
+      top
+      bottom
+      left
+      right
     }
-    
-    query FeaturedPosts {
-      site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
-        title
-        description
-        keywords
+    hotspot {
+      _key
+      _type
+      x
+      y
+      height
+      width
+    }
+    asset {
+      _id
+
+      
+    }
+  }
+    query {
+      site {
+        siteMetadata {
+          title
+        }
       }
-      posts: allSanityPost(
-        limit: 6
+
+      albums: allSanityAlbum (
         sort: { fields: [publishedAt], order: DESC }
         filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
       ) {
         edges {
           node {
             id
-            publishedAt
-            mainImage {
-              ...SanityImage
-              alt
-            }
             title
-            _rawExcerpt
             slug {
               current
+            }
+            country
+            _rawDescription 
+            _rawExcerpt
+            contributor
+            artist
+            recordLabel {
+              name
+            }
+            frontCover {
+              ...SanityImage
+              alt
             }
           }
         }
@@ -72,23 +75,33 @@ const FeaturedPosts: React.FunctionComponent<FeaturedPostsProps> = (props) => {
   `)
 
 
-const postNodes = postData.posts.edges
+const albumNodes = albumData.albums.edges
+
 return (
   <FeaturedPostWrapper>
-    <SecTitle>Featured Stories</SecTitle>
+    <SecTitle>Featured Tapes</SecTitle>
     <FeaturedPostRow>
-      {postNodes.map(({ node }: any) => {
+      {albumNodes.map(({ node }: any) => {
 
-        const title = node.title || node.slug
-        console.log("published: "+node._createdAt)
+        const title = node.title || node.slug.current
+
+        const desc = node._rawDescription.map(description => {
+          return description.children[0].text;
+        })
+        const shortDesc = node._rawExcerpt.map(description => {
+          return description.children[0].text;
+        })
 
         return (
           <FeaturedPostCol key={node.id}>
             <FeaturedCard
               title={node.title}
-              image={node.mainImage}
-              description={node._rawBody}
+              image={node.frontCover}
+              artist={node.artist}
+              recordLabels={node.recordLabel}
+              description={desc}
               url={node.slug.current}
+              excerpt={shortDesc}
               publishedAt={node.publishedAt}
             />
           </FeaturedPostCol>

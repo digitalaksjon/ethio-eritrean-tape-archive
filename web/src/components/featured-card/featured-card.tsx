@@ -17,8 +17,11 @@ import {
 interface FeaturedCardProps {
   image?: any;
   title: string;
-  description?: string;
+  description?: any;
   url: string;
+  excerpt: string;
+  artist: string;
+  recordLabels: any;
   publishedAt: Date;
   className?: string;
   imageType?: 'fixed' | 'fluid';
@@ -29,10 +32,13 @@ const FeaturedCard: React.FunctionComponent<FeaturedCardProps> = ({
   image,
   title,
   description,
+  artist,
   url,
   className,
+  recordLabels,
   publishedAt,
   imageType,
+  excerpt,
   overlay,
   ...props
 }) => {
@@ -45,7 +51,7 @@ const FeaturedCard: React.FunctionComponent<FeaturedCardProps> = ({
   if (className) {
     addClass.push(className);
   }
-  console.log(publishedAt)
+  console.log(description)
   return (
     <FeaturedCardWrapper className={addClass.join(' ')} {...props}>
       {image == null ? null : (
@@ -53,7 +59,7 @@ const FeaturedCard: React.FunctionComponent<FeaturedCardProps> = ({
           <Link to={url}>
           <img
             src={imageUrlFor(buildImageObj(image))
-              .width(600)
+              .width(400)
               .height(400)          
               .auto('format')
               .url()}
@@ -67,6 +73,7 @@ const FeaturedCard: React.FunctionComponent<FeaturedCardProps> = ({
 
 
         <PostTitle className="post_title">
+
           <Link to={getBlogUrl(publishedAt, url)}>{title}</Link>
         </PostTitle>
         {overlay == true ? (
@@ -74,17 +81,31 @@ const FeaturedCard: React.FunctionComponent<FeaturedCardProps> = ({
         ) : (
           <>
             {' '}
-            {description && (
+            {excerpt && (
               <Excerpt
                 dangerouslySetInnerHTML={{
-                  __html: description,
+                  __html: excerpt,
                 }}
                 className="excerpt"
               />
             )}
           </>
         )}
-
+        <PostMeta>
+        <div className="meta_line">Artist: <span>{artist}</span></div>
+        <div className="meta_line">Label: <span>
+          
+        {recordLabels.map(recordLabel => {
+            return recordLabel.name
+         
+        })}
+        </span></div>
+        <div className="meta_line">
+        {description.map(desc => {
+            return desc.text;
+        })}
+        </div>
+        </PostMeta>
         <ReadMore className="read_more">
           <Link to={url}>{overlay == true ? 'Read Story' : 'Read More'}</Link>
         </ReadMore>

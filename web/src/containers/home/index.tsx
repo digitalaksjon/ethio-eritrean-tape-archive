@@ -13,7 +13,7 @@ const PersonalBlog: React.FunctionComponent<PersonalBlogProps> = ({
     <PersonalBlogWrapper {...props}>
       <Intro />
       <FeaturedPosts />
-      <Posts />
+
     </PersonalBlogWrapper>
   )
 }

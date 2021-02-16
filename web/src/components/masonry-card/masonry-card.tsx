@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { Link } from 'gatsby';
 import _ from 'lodash';
-import Img from 'gatsby-image';
+import {buildImageObj, getBlogUrl} from '../../lib/helpers'
+import {imageUrlFor} from '../../lib/image-url'
+
 import {
   MasonryCardWrapper,
   PostPreview,
@@ -21,9 +23,10 @@ interface MasonryCardProps {
   url: string;
   date?: string;
   tags?: [];
+  description: string;
   className?: string;
   imageType?: 'fixed' | 'fluid';
-  readTime?: string;
+  overlay?: boolean;
 }
 
 const MasonryCard: React.FunctionComponent<MasonryCardProps> = ({
@@ -32,9 +35,10 @@ const MasonryCard: React.FunctionComponent<MasonryCardProps> = ({
   url,
   date,
   tags,
+  description,
   className,
   imageType,
-  readTime,
+  overlay,
   ...props
 }) => {
   // Add all classs to an array
@@ -50,11 +54,13 @@ const MasonryCard: React.FunctionComponent<MasonryCardProps> = ({
       {image == null ? null : (
         <PostPreview className="post_preview">
           <Link to={url}>
-            {imageType === 'fluid' ? (
-              <Img fluid={image} alt="post preview" />
-            ) : (
-              <Img fixed={image} alt="post preview" />
-            )}
+          <img
+            src={imageUrlFor(buildImageObj(image))
+              .width(600)
+              .height(600)          
+              .auto('format')
+              .url()}
+            alt={image.alt} />
           </Link>
         </PostPreview>
       )}
@@ -69,25 +75,29 @@ const MasonryCard: React.FunctionComponent<MasonryCardProps> = ({
               className="post_date"
             />
           )}
-          {readTime && <ReadingTime>{readTime}</ReadingTime>}
-          {tags == null ? null : (
-            <PostTags className="post_tags">
-              {tags.map((tag: string, index: number) => (
-                <Link key={index} to={`/tags/${_.kebabCase(tag)}/`}>
-                  {`#${tag}`}
-                </Link>
-              ))}
-            </PostTags>
-          )}
         </PostMeta>
 
         <PostTitle className="post_title">
-          <Link to={url}>{title}</Link>
+          <Link to={getBlogUrl(date, url)}>{title}</Link>
         </PostTitle>
-        <ReadMore>
-          <Link to={url}>
-            Read More <IoIosArrowForward />
-          </Link>
+        {overlay == true ? (
+          ''
+        ) : (
+          <>
+            {' '}
+            {description && (
+              <Excerpt
+                dangerouslySetInnerHTML={{
+                  __html: description,
+                }}
+                className="excerpt"
+              />
+            )}
+          </>
+        )}
+
+        <ReadMore className="read_more">
+          <Link to={url}>{overlay == true ? 'Read Story' : 'Read More'}</Link>
         </ReadMore>
       </PostDetails>
     </MasonryCardWrapper>
