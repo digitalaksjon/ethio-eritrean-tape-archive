@@ -5,7 +5,7 @@ export const FeaturedCardWrapper = styled.div`
   &:hover {
     .post_details {
       opacity: 1;
-      bottom: 30px;
+      top: 50px;
       @media (max-width: 1400px) {
         bottom: 25px;
       }
@@ -75,20 +75,21 @@ export const PostPreview = styled.div`
   }
   a {
     display: block;
+    
   }
 `;
 
 export const PostDetails = styled.div`
   position: absolute;
   width: calc(100% - 60px);
-  bottom: 0;
+  top: 50px;
   left: 30px;
   background-color: #fff;
   padding: 30px;
   border-radius: 3px;
   opacity: 0;
   z-index: 2;
-  transition: 0.3s ease-in-out;
+  transition: 0.5s ease-in-out;
   @media (max-width: 1400px) {
     width: calc(100% - 50px);
     left: 25px;
@@ -127,16 +128,29 @@ export const ReadMore = styled.div`
 
   background-color: ${themeGet('colors.primary', '#292929')};
   padding: 10px;
+  width: 100%;
+  margin: 0 auto;
+  cursor:pointer;
+
   a {
     width: 100%;
     text-align: center;
     display:inline-block;
     font-size: 13px;
     font-weight: 700;
+
     color: ${themeGet('colors.white', '#292929')};
-    &:hover {
-      text-decoration: underline;
+
+  }
+  &:hover {
+    background-color: ${themeGet('colors.primaryHover', '#F26849')};
+    padding:10px;
+    transition: 0.3s ease-in-out;
+    a {
+      font-size:14px;
+      transition: 0.2s ease-in-out;
     }
+
   }
 `;
 

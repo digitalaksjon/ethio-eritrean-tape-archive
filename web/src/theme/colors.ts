@@ -10,7 +10,7 @@ const colors = {
   borderColor: "#DBDBDB", // 8
   lightBorderColor: "#ededed", //9
   primary: "#F28241", // 10
-  primaryHover: "##F26849", // 11
+  primaryHover: "#F26849", // 11
 
 }
 
