@@ -59,8 +59,8 @@ const FeaturedCard: React.FunctionComponent<FeaturedCardProps> = ({
           <Link to={url}>
           <img
             src={imageUrlFor(buildImageObj(image))
-              .width(400)
-              .height(400)          
+              .width(600)
+              .height(600)          
               .auto('format')
               .url()}
             alt={image.alt}

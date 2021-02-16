@@ -81,7 +81,7 @@ return (
   <FeaturedPostWrapper>
     <SecTitle>Latest Tapes</SecTitle>
     <FeaturedPostRow>
-      {albumNodes.map(({ node }: any) => {
+      {albumNodes.map(({ node }: aany) => {
 
         const title = node.title || node.slug.current
 
