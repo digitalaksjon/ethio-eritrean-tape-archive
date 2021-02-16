@@ -56,7 +56,7 @@ const Intro: React.FunctionComponent<IntroProps> = (props) => {
 
   return (
     <IntroWrapper>
-      <BgText>ABOUT</BgText>
+      <BgText>TAPE ARCHIVE</BgText>
       <IntroContentWrapper>
         <IntroTitle>Stay on the story</IntroTitle>
         <Desciption>{about}</Desciption>
