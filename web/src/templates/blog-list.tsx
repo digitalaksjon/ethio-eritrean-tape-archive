@@ -1,7 +1,6 @@
 import * as React from "react"
 import { graphql } from "gatsby"
 import Masonry from "react-masonry-component"
-import MasonryCard from "../components/masonry-card/masonry-card"
 import Pagination from "../components/pagination/pagination"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -25,26 +24,7 @@ const BlogList = (props: any) => {
 
       <BlogPostsWrapper>
         <PostRow>
-          <Masonry className="showcase">
-            {Posts.map(({ node }: any) => {
-              return (
-                <PostCol key={node.fields.slug}>
-                  <MasonryCard
-                    title={node.frontmatter.title || node.fields.slug}
-                    image={
-                      node.frontmatter.cover == null
-                        ? null
-                        : node.frontmatter.cover.childImageSharp.fluid
-                    }
-                    url={node.fields.slug}
-                    date={node.frontmatter.date}
-                    tags={node.frontmatter.tags}
-                    readTime={node.fields.readingTime.text}
-                  />
-                </PostCol>
-              )
-            })}
-          </Masonry>
+          
         </PostRow>
 
         <Pagination
