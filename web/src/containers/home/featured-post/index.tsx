@@ -79,7 +79,7 @@ const albumNodes = albumData.albums.edges
 
 return (
   <FeaturedPostWrapper>
-    <SecTitle>Featured Tapes</SecTitle>
+    <SecTitle>Latest Tapes</SecTitle>
     <FeaturedPostRow>
       {albumNodes.map(({ node }: any) => {
 
