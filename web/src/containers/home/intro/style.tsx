@@ -3,8 +3,13 @@ import { themeGet } from "@styled-system/theme-get"
 import TapesImage from '../../../images/tapes.jpg'
 
 export const IntroWrapper = styled.div`
-  padding: 190px 10px 190px 10px;
+  padding: 100px 10px 190px 10px;
   position: relative;
+  margin-bottom: 50px;
+
+  background-image: url( ${TapesImage});
+  background-size:cover;
+  background-position:center;
   @media (max-width: 1400px) {
     padding: 120px 10px 120px 10px;
   }
@@ -23,12 +28,14 @@ export const IntroContentWrapper = styled.div`
   width: 740px;
   max-width: 100%;
   margin: 0 auto;
-
+  padding: 10px 20px;
+  background-color: rgba(0,0,0,0.5);
   text-align: center;
   position: relative;
 `
 
 export const IntroImage = styled.div`
+
   width: 270px;
   height: 270px;
   padding: 30px;
@@ -61,9 +68,10 @@ export const IntroTitle = styled.h1`
   font-size: 30px;
   font-weight: 700;
   font-family: ${themeGet("fontFamily.0", "'Fira Sans',sans-serif")};
-  color: ${themeGet("colors.textColor", "#292929")};
+  color: ${themeGet("colors.white", "#ffffff")};
   text-align: center;
   margin-bottom: 30px;
+  margin-top: 20px;
   @media (max-width: 990px) {
     font-size: 26px;
     margin-bottom: 15px;
@@ -76,11 +84,12 @@ export const IntroTitle = styled.h1`
 `
 
 export const Desciption = styled.p`
-  color: ${themeGet("colors.textColor", "#292929")};
+  color: ${themeGet("colors.white", "#ffffff")};
   font-size: ${themeGet("fontSizes.3", "15")}px;
   line-height: ${themeGet("lineHeights.text", "2")};
   text-align: center;
-  margin-bottom: 50px;
+  margin-left: 30px;
+  margin-right: 30px;
   @media (max-width: 767px) {
     margin-bottom: 30px;
   }
@@ -99,7 +108,6 @@ export const BgImage = styled.div`
   text-align: center;
   pointer-events: none;
   transform: translateY(-50%);
-  background-image: ${TapesImage}
   @media (max-width: 1500px) {
     font-size: 350px;
   }

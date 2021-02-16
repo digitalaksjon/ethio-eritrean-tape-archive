@@ -5,7 +5,7 @@ export const FeaturedCardWrapper = styled.div`
   &:hover {
     .post_details {
       opacity: 1;
-      top: 50px;
+      top: 100px;
       @media (max-width: 1400px) {
         bottom: 25px;
       }

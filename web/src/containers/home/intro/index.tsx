@@ -1,6 +1,7 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import SocialProfile from '../../../components/social-profile/social-profile';
+import logoImage from '../../../images/logo.png';
 import {
   IntroWrapper,
   IntroTitle,
@@ -58,7 +59,7 @@ const Intro: React.FunctionComponent<IntroProps> = (props) => {
     <IntroWrapper>
       <BgImage>ETHIO</BgImage>
       <IntroContentWrapper>
-        <IntroTitle>Tapes from Ethiopia and Eritrea</IntroTitle>
+        <IntroTitle>Awesome Tapes from Ethiopia and Eritrea</IntroTitle>
         <Desciption>{about}</Desciption>
         <SocialProfile items={SocialLinks} />
       </IntroContentWrapper>

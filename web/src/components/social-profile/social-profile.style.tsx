@@ -7,11 +7,11 @@ export const SocialProfileWrapper = styled.ul`
 
 export const Tooltip = styled.div`
   position: absolute;
-  background-color: #fff;
+  background-color: #000;
   pointer-events: none;
   padding: 0.4rem 0.8rem;
   border-radius: 3px;
-  color: #333;
+  color: #fff;
   font-size: 13px;
   bottom: 90%;
   left: 50%;
@@ -53,7 +53,7 @@ export const SocialProfileItem = styled.li`
   }
 
   a {
-    color: ${themeGet('colors.textColor', '#292929')};
+    color: ${themeGet('colors.white', '#fff')};
     font-size: 22px;
     padding: 0.2em;
     display: block;
