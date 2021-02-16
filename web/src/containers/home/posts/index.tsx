@@ -9,47 +9,53 @@ type PostsProps = {}
 
 const Posts: React.FunctionComponent<PostsProps> = () => {
   const Data = useStaticQuery(graphql`
+  fragment SanityImage on SanityMainImage {
+    crop {
+      _key
+      _type
+      top
+      bottom
+      left
+      right
+    }
+    hotspot {
+      _key
+      _type
+      x
+      y
+      height
+      width
+    }
+    asset {
+      _id
+
+      
+    }
+  }
     query {
       site {
         siteMetadata {
           title
         }
       }
-      allSitePage(filter: { path: { eq: "/page/1" } }) {
-        nodes {
-          context {
-            numPages
-            currentPage
-          }
-        }
-      }
-      allMarkdownRemark(
-        sort: { fields: [frontmatter___date], order: DESC }
-        limit: 6
-        skip: 3
+
+      allSanityAlbum (
+        sort: { fields: [publishedAt], order: DESC }
+        filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
       ) {
-        totalCount
         edges {
           node {
-            excerpt(pruneLength: 300)
-            fields {
-              slug
-              readingTime {
-                text
-              }
+            id
+            title
+            slug {
+              current
             }
-            frontmatter {
-              date(formatString: "MMM DD, YYYY")
-              title
-              description
-              tags
-              cover {
-                childImageSharp {
-                  fluid(maxWidth: 570, quality: 100) {
-                    ...GatsbyImageSharpFluid_withWebp_tracedSVG
-                  }
-                }
-              }
+            country
+            contributor
+            artist
+            frontCover {
+              ...SanityImage
+              alt
             }
           }
         }
@@ -57,46 +63,36 @@ const Posts: React.FunctionComponent<PostsProps> = () => {
     }
   `)
 
-  const Posts = Data.allMarkdownRemark.edges
-  const TotalPage = Data.allSitePage.nodes[0].context.numPages
-  const CurrentPage = Data.allSitePage.nodes[0].context.currentPage
+
+  const Albums = Data.allSanityAlbum.edges
+  console.log(Albums)
 
   return (
     <BlogPostsWrapper>
-      <SecTitle>Latest Stories</SecTitle>
+      <SecTitle>Latest Tapes</SecTitle>
       <PostRow>
         <Masonry className="showcase">
-          {Posts.map(({ node }: any) => {
-            const title = node.frontmatter.title || node.fields.slug
+          {Albums.map(({ node }: any) => {
+            const title = node.title || node.slug.current
             return (
-              <PostCol key={node.fields.slug}>
+              <PostCol key={node.slug.current}>
                 <MasonryCard
                   title={title}
                   image={
-                    node.frontmatter.cover == null
+                    node.frontCover == null
                       ? null
-                      : node.frontmatter.cover.childImageSharp.fluid
+                      : node.frontCover
                   }
-                  url={node.fields.slug}
-                  date={node.frontmatter.date}
-                  tags={node.frontmatter.tags}
-                  readTime={node.fields.readingTime.text}
+                  description={node.description}
+                  url={node.slug.current}
+                  date={node.publishedAt}
                 />
               </PostCol>
             )
           })}
         </Masonry>
       </PostRow>
-      {TotalPage >> 1 ? (
-        <Pagination
-          nextLink="/page/2"
-          currentPage={CurrentPage}
-          totalPage={TotalPage}
-          className="pagination"
-        />
-      ) : (
-        ""
-      )}
+      
     </BlogPostsWrapper>
   )
 }

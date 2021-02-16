@@ -57,6 +57,7 @@ export const FeaturedCardWrapper = styled.div`
         color: #fff;
       }
     }
+
     .read_more {
       a {
         color: #f6c667;
@@ -111,16 +112,31 @@ export const PostDetails = styled.div`
 
 export const PostMeta = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: left;
   margin-bottom: 12px;
+  span {
+    font-weight: 900;
+  }
+
+
+
 `;
 
 export const ReadMore = styled.div`
+
+  background-color: ${themeGet('colors.primary', '#292929')};
+  padding: 10px;
   a {
+    width: 100%;
+    text-align: center;
+    display:inline-block;
     font-size: 13px;
     font-weight: 700;
-    color: ${themeGet('colors.textColor', '#292929')};
-    text-decoration: underline;
+    color: ${themeGet('colors.white', '#292929')};
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;
 
@@ -175,7 +191,7 @@ export const Excerpt = styled.p`
   font-size: ${themeGet('fontSizes.3', '15')}px;
   color: ${themeGet('textColor', '#292929')};
   font-weight: 400;
-  line-height: 2;
+  line-height: 1;
   margin-bottom: 30px;
   @media (max-width: 990px) {
     font-size: 14px;

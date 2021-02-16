@@ -24,8 +24,8 @@ export const FeaturedPostRow = styled.div`
 `
 
 export const FeaturedPostCol = styled.div`
-  max-width: 33.33333%;
-  flex: 0 0 33.33333%;
+  max-width: 25%;
+  flex: 0 0 25%;
   float: left;
   padding: 0 15px;
   @media (max-width: 990px) {
