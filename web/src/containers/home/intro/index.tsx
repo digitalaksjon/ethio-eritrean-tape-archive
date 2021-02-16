@@ -5,7 +5,7 @@ import {
   IntroWrapper,
   IntroTitle,
   Desciption,
-  BgText,
+  BgImage,
   IntroContentWrapper,
 } from './style';
 import {
@@ -56,7 +56,7 @@ const Intro: React.FunctionComponent<IntroProps> = (props) => {
 
   return (
     <IntroWrapper>
-      <BgText>TAPE ARCHIVE</BgText>
+      <BgImage>ETHIO</BgImage>
       <IntroContentWrapper>
         <IntroTitle>Stay on the story</IntroTitle>
         <Desciption>{about}</Desciption>

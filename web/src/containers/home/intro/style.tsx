@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { themeGet } from "@styled-system/theme-get"
+import TapesImage from '../../../images/tapes.jpg'
 
 export const IntroWrapper = styled.div`
   padding: 190px 10px 190px 10px;
@@ -85,7 +86,7 @@ export const Desciption = styled.p`
   }
 `
 
-export const BgText = styled.div`
+export const BgImage = styled.div`
   font-size: 400px;
   font-weight: 700;
   line-height: 1;
@@ -98,6 +99,7 @@ export const BgText = styled.div`
   text-align: center;
   pointer-events: none;
   transform: translateY(-50%);
+  background-image: ${TapesImage}
   @media (max-width: 1500px) {
     font-size: 350px;
   }
