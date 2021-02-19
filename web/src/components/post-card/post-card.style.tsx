@@ -2,6 +2,7 @@ import styled from "styled-components"
 import { themeGet } from "@styled-system/theme-get"
 export const PostCardWrapper = styled.div`
   position: relative;
+
 `
 
 export const PostPreview = styled.div`
@@ -9,6 +10,7 @@ export const PostPreview = styled.div`
   position: relative;
   img {
     border-radius: 3px;
+    width: 100%;
   }
 
   &:before {
@@ -16,10 +18,9 @@ export const PostPreview = styled.div`
     position: absolute;
     width: 80%;
     height: 80%;
-    background-color: #757575;
+
     bottom: 0;
     left: 10%;
-    filter: blur(15px);
   }
 `
 

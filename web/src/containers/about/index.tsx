@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import Image from 'gatsby-image';
-import LogoImage from '../../images/logo.png';
+import LogoImage from '../../images/logo_big.png';
 import SocialProfile from '../../components/social-profile/social-profile';
 import {
   IoLogoFacebook,
@@ -43,26 +43,10 @@ const SocialLinks = [
 interface AboutProps {}
 
 const About: React.FunctionComponent<AboutProps> = (props) => {
-  const Data = useStaticQuery(graphql`
-    query {
-      avatar: file(absolutePath: { regex: "/about.jpg/" }) {
-        childImageSharp {
-          fluid(maxWidth: 1770, quality: 90) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-      site {
-        siteMetadata {
-          author
-          about
-        }
-      }
-    }
-  `);
 
   return (
     <AboutWrapper>
+
       <AboutPageTitle>
         <h2>About Ethio-Eritrean Tape Archive</h2>
         <p>
@@ -71,10 +55,10 @@ const About: React.FunctionComponent<AboutProps> = (props) => {
           developers to use for their portfolio website.
         </p>
       </AboutPageTitle>
-
       <AboutImage>
         <img src={LogoImage} alt="logo" />
       </AboutImage>
+
 
       <AboutDetails>
         <h2>Hey there, what’s up?</h2>

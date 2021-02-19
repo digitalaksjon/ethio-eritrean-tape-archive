@@ -91,7 +91,7 @@ function Search() {
           id="Search"
           value={searchQuery}
           onChange={searchData}
-          placeholder="Enter Your Search Topic"
+          placeholder="Enter the title of the tape or artist"
         />
       </SearchForm>
       <SearchResult>

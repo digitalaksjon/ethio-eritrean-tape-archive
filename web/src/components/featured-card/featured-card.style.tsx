@@ -5,7 +5,7 @@ export const FeaturedCardWrapper = styled.div`
   &:hover {
     .post_details {
       opacity: 1;
-      top: 100px;
+      top: 50px;
       @media (max-width: 1400px) {
         bottom: 25px;
       }
@@ -20,6 +20,8 @@ export const FeaturedCardWrapper = styled.div`
       background-color: ${themeGet('colors.primaryHover', '#F26849')};
       padding:10px;
       transition: 0.3s ease-in-out;
+      box-shadow: rgba(0, 0, 0, 0.35) 3px 3px 15px;
+
     }
   }
   &.overlay {
@@ -74,9 +76,13 @@ export const FeaturedCardWrapper = styled.div`
 
 export const PostPreview = styled.div`
   position: relative;
-  overflow: hidden;
+  
+
   img {
     border-radius: 3px;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.35) 3px 3px 15px;
+    
   }
   a {
     display: block;
@@ -109,8 +115,12 @@ export const PostDetails = styled.div`
   }
   @media (max-width: 990px) {
     opacity: 1;
+    top: -50px;
+
+    position:relative;
     bottom: 15px;
     width: calc(100% - 30px);
+    height: 100%;
     left: 15px;
     padding: 20px;
   }
@@ -134,14 +144,14 @@ export const ReadMore = styled.div`
   background-color: ${themeGet('colors.primary', '#292929')};
   padding: 10px;
   width: 100%;
-  margin: 0 auto;
+  margin: 30px auto;
   cursor:pointer;
 
   a {
     width: 100%;
     text-align: center;
     display:inline-block;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 700;
 
     color: ${themeGet('colors.white', '#292929')};

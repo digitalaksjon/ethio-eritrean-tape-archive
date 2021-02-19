@@ -65,12 +65,14 @@ export const RelatedPostTitle = styled.h2`
 export const RelatedPostItems = styled.div`
   display: flex;
   flex-wrap: wrap;
+  flex-flow: row wrap;
+  justify-content: flex-start;
   margin: 0 -15px;
 `;
 
 export const RelatedPostItem = styled.div`
-  flex: 0 0 33.333333333%;
-  max-width: 33.333333333%;
+  flex: 0 0 25%;
+  max-width: 25%;
   padding: 0 15px;
   @media (max-width: 575px) {
     flex: 0 0 100%;
@@ -80,23 +82,17 @@ export const RelatedPostItem = styled.div`
     }
   }
   .post_card {
-    &:hover {
-      .post_preview {
-        a {
-          transform: scale(1.05);
-        }
-      }
-    }
-
+    cursor:pointer;
     .post_preview {
       margin-bottom: 16px;
       overflow: hidden;
       a {
         display: block;
-        transition: 0.25s ease-in-out;
+        
       }
-      &:before {
-        filter: blur(10px);
+      &:hover {
+        transition: 0.25s ease-in-out;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;  
       }
     }
     .post_title {

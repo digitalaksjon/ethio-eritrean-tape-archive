@@ -13,7 +13,9 @@ export const AboutWrapper = styled.div`
 `;
 
 export const AboutPageTitle = styled.div`
-  margin-bottom: 45px;
+  width: 870px;
+  max-width: 100%;
+  margin: 0 auto 65px auto;
   @media (max-width: 767px) {
     margin-bottom: 30px;
   }
@@ -22,6 +24,7 @@ export const AboutPageTitle = styled.div`
     font-weight: 700;
     color: ${themeGet('colors.textColor', '#292929')};
     line-height: 1.53;
+    
     margin-bottom: 10px;
     @media (max-width: 990px) {
       font-size: 26px;
@@ -38,8 +41,9 @@ export const AboutImage = styled.div`
   width: 100%;
   text-align:center;
   img {
-    width: 50%;
+    width: 40%;
     margin:0 auto;
+
   }
   @media (max-width: 990px) {
     margin-bottom: 60px;

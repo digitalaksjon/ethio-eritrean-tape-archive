@@ -5,25 +5,63 @@ const { createFilePath } = require(`gatsby-source-filesystem`);
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
 
-  const blogPost = path.resolve(`./src/templates/blog-post.tsx`);
-  const blogList = path.resolve(`./src/templates/blog-list.tsx`);
-  const tagTemplate = path.resolve(`./src/templates/tags.tsx`);
+  const albumPost = path.resolve(`./src/templates/album.tsx`);
 
-  return graphql(
-    `
-      {
-        allMarkdownRemark(
-          sort: { fields: [frontmatter___date], order: DESC }
-          limit: 1000
+
+
+  return graphql(`
+    fragment SanityImage on SanityMainImage {
+      crop {
+        _key
+        _type
+        top
+        bottom
+        left
+        right
+      }
+      hotspot {
+        _key
+        _type
+        x
+        y
+        height
+        width
+      }
+      asset {
+        _id
+  
+        
+      }
+    }
+      query {
+        site {
+          siteMetadata {
+            title
+          }
+        }
+  
+        albums: allSanityAlbum (
+          sort: { fields: [publishedAt], order: DESC }
+          filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
         ) {
           edges {
             node {
-              fields {
-                slug
+              id
+              title
+              slug {
+                current
               }
-              frontmatter {
-                title
-                tags
+              country
+              _rawDescription 
+              _rawExcerpt
+              contributor
+              artist
+              recordLabel {
+                name
+              }
+              frontCover {
+                ...SanityImage
+                alt
               }
             }
           }
@@ -31,68 +69,31 @@ exports.createPages = ({ graphql, actions }) => {
       }
     `
   ).then((result) => {
+
     if (result.errors) {
       throw result.errors;
     }
 
     // Create blog posts pages.
-    const posts = result.data.allMarkdownRemark.edges;
+    const albums = result.data.albums.edges;
 
-    posts.forEach((post, index) => {
+    albums.forEach((album, index) => {
       const previous =
-        index === posts.length - 1 ? null : posts[index + 1].node;
-      const next = index === 0 ? null : posts[index - 1].node;
+        index === albums.length - 1 ? null : albums[index + 1].node;
+      const next = index === 0 ? null : albums[index - 1].node;
 
       createPage({
-        path: post.node.fields.slug,
-        component: blogPost,
+        path: album.node.slug.current,
+        component: albumPost,
         context: {
-          slug: post.node.fields.slug,
+          slug: album.node.slug.current,
           previous,
           next,
-          tag: post.node.frontmatter.tags,
+          tag: album.node.tags,
         },
       });
     });
 
-    // Create blog post list pages
-    const postsPerPage = 6;
-    const numPages = Math.ceil(posts.length / postsPerPage);
-
-    Array.from({ length: numPages }).forEach((_, i) => {
-      createPage({
-        path: i === 0 ? `/page/1` : `/page/${i + 1}`,
-        component: blogList,
-        context: {
-          limit: postsPerPage,
-          skip: i * postsPerPage,
-          numPages,
-          currentPage: i + 1,
-        },
-      });
-    });
-
-    // Tag pages:
-    let tags = [];
-    // Iterate through each post, putting all found tags into `tags`
-    _.each(posts, (edge) => {
-      if (_.get(edge, "node.frontmatter.tags")) {
-        tags = tags.concat(edge.node.frontmatter.tags);
-      }
-    });
-    // Eliminate duplicate tags
-    tags = _.uniq(tags);
-
-    // Make tag pages
-    tags.forEach((tag) => {
-      createPage({
-        path: `/tags/${_.kebabCase(tag)}/`,
-        component: tagTemplate,
-        context: {
-          tag,
-        },
-      });
-    });
 
     return null;
   });

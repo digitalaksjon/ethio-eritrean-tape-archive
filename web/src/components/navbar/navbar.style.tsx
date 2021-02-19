@@ -29,9 +29,16 @@ export const Logo = styled.div`
   margin-right: 50px;
   flex-shrink: 0;
   img {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     display: block;
     max-width: 30%;
     height: auto;
+    &:hover {
+
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 7px 15px;
+      transition: 0.2s ease-in;
+
+    }
   }
 
   @media (max-width: 990px) {

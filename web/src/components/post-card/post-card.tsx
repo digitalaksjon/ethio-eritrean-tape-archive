@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Link } from 'gatsby';
 import _ from 'lodash';
+import {buildImageObj, getBlogUrl} from '../../lib/helpers'
+import {imageUrlFor} from '../../lib/image-url'
 import Img from 'gatsby-image';
 import {
   PostCardWrapper,
@@ -42,17 +44,21 @@ const PostCard: React.FunctionComponent<PostCardProps> = ({
   if (className) {
     addAllClasses.push(className);
   }
-
+console.log(description)
   return (
     <PostCardWrapper className={addAllClasses.join(' ')} {...props}>
       {image == null ? null : (
         <PostPreview className="post_preview">
           <Link to={url}>
-            {imageType === 'fluid' ? (
-              <Img fluid={image} alt="post preview" />
-            ) : (
-              <Img fixed={image} alt="post preview" />
-            )}
+           <img
+            src={imageUrlFor(buildImageObj(image))
+              .width(250)
+              .height(250)
+              .fit("fill")
+              .auto('format')
+              .url()}
+            alt={image.alt}
+          />
           </Link>
         </PostPreview>
       )}
@@ -76,7 +82,7 @@ const PostCard: React.FunctionComponent<PostCardProps> = ({
               dangerouslySetInnerHTML={{
                 __html: description,
               }}
-              className="excerpt"
+              className="description"
             />
           )}
 

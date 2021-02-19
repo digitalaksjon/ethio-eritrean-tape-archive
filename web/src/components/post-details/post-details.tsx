@@ -2,6 +2,8 @@ import * as React from 'react';
 import Img from 'gatsby-image';
 import { Link } from 'gatsby';
 import _ from 'lodash';
+import {buildImageObj, getBlogUrl} from '../../lib/helpers'
+import {imageUrlFor} from '../../lib/image-url'
 import {
   PostDetailsWrapper,
   PostTitle,
@@ -41,6 +43,8 @@ const PostDetails: React.FunctionComponent<PostDetailsProps> = ({
   if (className) {
     addClass.push(className);
   }
+  console.log(description)
+
 
   return (
     <PostDetailsWrapper {...props} className={addClass.join(' ')}>
@@ -48,7 +52,16 @@ const PostDetails: React.FunctionComponent<PostDetailsProps> = ({
         <>
           {preview == null ? null : (
             <PostPreview className="post_preview">
-              <Img fluid={preview} alt={title} />
+  
+              <img
+            src={imageUrlFor(buildImageObj(preview))
+              .width(500)
+              .height(500)
+              .fit("fill")
+              .auto('format')
+              .url()}
+            alt={title}
+          />
             </PostPreview>
           )}
         </>

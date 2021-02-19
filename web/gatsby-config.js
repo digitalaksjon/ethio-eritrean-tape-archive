@@ -13,12 +13,12 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: "StoryHub",
-    author: "Monnisa",
+    title: "Ethio-Eritrean Tape Archive",
+    author: "Digital Aksjon",
     about:
       "Every company has a story to tell, so break out your storytelling skills from that random English class you took years ago and put them to work on your “About Us” page. Using descriptive and emotive copy and gorgeous graphics, an “About Us” page with a story works.",
-    description: "A Gatsby Blog",
-    siteUrl: "https://storyhub-agency-tarex.redq.now.sh/",
+    description: "Fantastic tapes from the horn of Africa",
+    siteUrl: "http://localhost:8000/",
   },
   plugins: [
     {

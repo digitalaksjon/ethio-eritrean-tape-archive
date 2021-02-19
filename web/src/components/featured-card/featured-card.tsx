@@ -18,6 +18,7 @@ interface FeaturedCardProps {
   image?: any;
   title: string;
   description?: any;
+  releaseDate?: any;
   url: string;
   excerpt: string;
   artist: string;
@@ -33,6 +34,7 @@ const FeaturedCard: React.FunctionComponent<FeaturedCardProps> = ({
   title,
   description,
   artist,
+  releaseDate,
   url,
   className,
   recordLabels,
@@ -51,7 +53,7 @@ const FeaturedCard: React.FunctionComponent<FeaturedCardProps> = ({
   if (className) {
     addClass.push(className);
   }
-  console.log(description)
+
   return (
     <FeaturedCardWrapper className={addClass.join(' ')} {...props}>
       {image == null ? null : (
@@ -59,8 +61,9 @@ const FeaturedCard: React.FunctionComponent<FeaturedCardProps> = ({
           <Link to={url}>
           <img
             src={imageUrlFor(buildImageObj(image))
-              .width(600)
-              .height(600)          
+              .width(400)
+              .height(400)
+              .fit("fill")
               .auto('format')
               .url()}
             alt={image.alt}
@@ -74,28 +77,10 @@ const FeaturedCard: React.FunctionComponent<FeaturedCardProps> = ({
           <Link to={getBlogUrl(publishedAt, url)}>{title}</Link>
         </PostTitle>
 
-        <div>{artist} (2010)</div>
+        <div>{artist} ({releaseDate.substring(0, 4)})</div>
         <hr/>
 
-        {overlay == true ? (
-          ''
-        ) : (
-          <>
-            {' '}
-            {excerpt && (
-              <Excerpt
-                dangerouslySetInnerHTML={{
-                  __html: excerpt,
-                }}
-                className="excerpt"
-              />
-            )}
-          </>
-        )}
-        <PostMeta>
 
-
-        </PostMeta>
 
       </PostDetails>
       <ReadMore className="read_more">

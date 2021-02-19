@@ -61,6 +61,7 @@ const FeaturedPosts: React.FunctionComponent<FeaturedPostsProps> = (props) => {
             _rawExcerpt
             contributor
             artist
+            releaseDate
             recordLabel {
               name
             }
@@ -102,7 +103,7 @@ return (
               description={desc}
               url={node.slug.current}
               excerpt={shortDesc}
-              publishedAt={node.publishedAt}
+              releaseDate={node.releaseDate}
             />
           </FeaturedPostCol>
         )
