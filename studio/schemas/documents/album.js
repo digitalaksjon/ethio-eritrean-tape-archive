@@ -41,6 +41,11 @@ export default {
       title: 'Description'
     },
     {
+      name: 'backSide',
+      type: 'mainImage',
+      title: 'Back side'
+    },
+    {
       name: 'frontCover',
       type: 'mainImage',
       title: 'Front Cover'

@@ -52,7 +52,7 @@ const AlbumTemplate = (props: any) => {
     config: { identifier: slug, title },
   };
 
-  console.log(album)
+
 
   return (
     <Layout>

@@ -59,11 +59,11 @@ exports.createPages = ({ graphql, actions }) => {
               recordLabel {
                 name
               }
-              frontCover {
+              backCover {
                 ...SanityImage
                 alt
               }
-              backCover {
+              frontCover {
                 ...SanityImage
                 alt
               }
