@@ -53,8 +53,7 @@ const AlbumTemplate = (props: any) => {
   };
 
 
-  console.log("TRACKS:")
-  console.log(album.tracks)
+
 
 
   return (
@@ -178,7 +177,7 @@ fragment SanityImage on SanityMainImage {
         ...SanityImage
         alt
       }
-     backCover {
+      backCover {
         ...SanityImage
         alt
       }
