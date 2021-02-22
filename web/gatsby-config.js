@@ -22,6 +22,9 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: "gatsby-plugin-sass",
+    },
+    {
       resolve: "gatsby-plugin-postcss",
     },
     {
@@ -53,6 +56,7 @@ module.exports = {
         name: "assets",
       },
     },
+
     {
       resolve: "gatsby-transformer-remark",
       options: {

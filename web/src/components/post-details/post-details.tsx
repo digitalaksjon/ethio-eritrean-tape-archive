@@ -2,8 +2,9 @@ import * as React from 'react';
 import Img from 'gatsby-image';
 import { Link } from 'gatsby';
 import _ from 'lodash';
-import {buildImageObj, getBlogUrl} from '../../lib/helpers'
-import {imageUrlFor} from '../../lib/image-url'
+
+import AlbumGallery from '../gallery/gallery';
+
 import {
   PostDetailsWrapper,
   PostTitle,
@@ -17,7 +18,8 @@ import {
 type PostDetailsProps = {
   title: string;
   date?: string;
-  preview?: any;
+  front?: any;
+  back?: any;
   description: any;
   tags?: [];
   className?: string;
@@ -27,7 +29,8 @@ type PostDetailsProps = {
 const PostDetails: React.FunctionComponent<PostDetailsProps> = ({
   title,
   date,
-  preview,
+  front,
+  back,
   description,
   tags,
   className,
@@ -36,38 +39,28 @@ const PostDetails: React.FunctionComponent<PostDetailsProps> = ({
 }) => {
   const addClass: string[] = ['post_details'];
 
-  if (imagePosition === 'left') {
-    addClass.push('image_left');
-  }
+
 
   if (className) {
     addClass.push(className);
   }
-  console.log(description)
-
 
   return (
     <PostDetailsWrapper {...props} className={addClass.join(' ')}>
+
       {imagePosition === 'left' ? (
         <>
-          {preview == null ? null : (
+          {front == null ? null : (
             <PostPreview className="post_preview">
-  
-              <img
-            src={imageUrlFor(buildImageObj(preview))
-              .width(500)
-              .height(500)
-              .fit("fill")
-              .auto('format')
-              .url()}
-            alt={title}
-          />
+
+              <AlbumGallery frontCover={front} backCover={back} />
+
             </PostPreview>
           )}
         </>
       ) : (
-        ''
-      )}
+          ''
+        )}
 
       {imagePosition === 'top' ? (
         <>
@@ -75,20 +68,20 @@ const PostDetails: React.FunctionComponent<PostDetailsProps> = ({
           <PostDate>{date}</PostDate>
         </>
       ) : (
-        ''
-      )}
+          ''
+        )}
 
       {imagePosition === 'top' ? (
         <>
-          {preview == null ? null : (
+          {front == null ? null : (
             <PostPreview className="post_preview">
-              <Img fluid={preview} alt={title} />
+              <Img fluid={front} alt={title} />
             </PostPreview>
           )}
         </>
       ) : (
-        ''
-      )}
+          ''
+        )}
       <PostDescriptionWrapper className="post_des_wrapper">
         {imagePosition === 'left' ? (
           <>
@@ -96,8 +89,8 @@ const PostDetails: React.FunctionComponent<PostDetailsProps> = ({
             <PostDate>{date}</PostDate>
           </>
         ) : (
-          ''
-        )}
+            ''
+          )}
         <PostDescription
           dangerouslySetInnerHTML={{ __html: description }}
           className="post_des"

@@ -63,6 +63,10 @@ exports.createPages = ({ graphql, actions }) => {
                 ...SanityImage
                 alt
               }
+              backCover {
+                ...SanityImage
+                alt
+              }
             }
           }
         }

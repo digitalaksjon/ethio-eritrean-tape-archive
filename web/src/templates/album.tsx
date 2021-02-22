@@ -7,6 +7,8 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import PostCard from '../components/post-card/post-card';
 import PostDetails from '../components/post-details/post-details';
+
+
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -39,6 +41,8 @@ const AlbumTemplate = (props: any) => {
   const siteUrl = props.data.site.siteMetadata.siteUrl;
   var shareUrl = urljoin(siteUrl, slug);
 
+  console.log(props)
+
   const description = album._rawDescription.map(description => {
     return description.children[0].text;
   })
@@ -47,6 +51,9 @@ const AlbumTemplate = (props: any) => {
     shortname: process.env.GATSBY_DISQUS_NAME,
     config: { identifier: slug, title },
   };
+
+  console.log(album)
+
   return (
     <Layout>
       <SEO
@@ -57,16 +64,22 @@ const AlbumTemplate = (props: any) => {
         <PostDetails
           title={album.title}
           date={album.releaseDate}
-          preview={
+          front={
             album.frontCover == null
               ? null
               : album.frontCover
           }
+          back={
+            album.backCover == null
+              ? null
+              : album.backCover
+          }
+
           description={description}
           imagePosition="left"
         />
 
-       
+
       </BlogPostDetailsWrapper>
 
       {edges.length !== 0 && (
@@ -75,7 +88,7 @@ const AlbumTemplate = (props: any) => {
           <RelatedPostItems>
             {edges.map(({ node }: any) => (
               <RelatedPostItem key={node.slug.current}>
-                
+
                 <PostCard
                   title={node.title || node.slug.current}
                   url={urljoin(siteUrl, node.slug.current)}
@@ -87,7 +100,7 @@ const AlbumTemplate = (props: any) => {
                       ? null
                       : node.frontCover
                   }
-     
+
                 />
               </RelatedPostItem>
             ))}

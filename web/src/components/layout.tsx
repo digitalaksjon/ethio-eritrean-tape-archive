@@ -9,6 +9,7 @@ import ScrollUpButton from './scroll-up-button/scroll-up-button';
 import ResetCss from './reset-css';
 import { theme } from '../theme';
 
+
 type LayoutProps = {
   children: React.ReactNode;
 };
