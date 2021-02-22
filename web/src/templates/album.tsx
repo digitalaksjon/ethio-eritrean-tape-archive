@@ -7,7 +7,7 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import PostCard from '../components/post-card/post-card';
 import PostDetails from '../components/post-details/post-details';
-
+import Tracks from '../components/track/track';
 
 import {
   FacebookShareButton,
@@ -53,6 +53,9 @@ const AlbumTemplate = (props: any) => {
   };
 
 
+  console.log("TRACKS:")
+  console.log(album.tracks)
+
 
   return (
     <Layout>
@@ -78,6 +81,8 @@ const AlbumTemplate = (props: any) => {
           description={description}
           imagePosition="left"
         />
+
+        <Tracks tracks={album.tracks} />
 
 
       </BlogPostDetailsWrapper>
@@ -157,11 +162,23 @@ fragment SanityImage on SanityMainImage {
       releaseDate
       _rawExcerpt
       contributor
+      tracks {
+        trackName
+        audioFile {
+          asset {
+            url
+          }
+        }
+      }
       artist
       recordLabel {
         name
       }
       frontCover {
+        ...SanityImage
+        alt
+      }
+     backCover {
         ...SanityImage
         alt
       }

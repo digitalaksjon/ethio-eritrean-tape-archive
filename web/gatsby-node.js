@@ -59,6 +59,10 @@ exports.createPages = ({ graphql, actions }) => {
               recordLabel {
                 name
               }
+              backSide {
+                ...SanityImage
+                alt
+              }
               backCover {
                 ...SanityImage
                 alt
@@ -82,6 +86,7 @@ exports.createPages = ({ graphql, actions }) => {
     const albums = result.data.albums.edges;
 
     albums.forEach((album, index) => {
+
       const previous =
         index === albums.length - 1 ? null : albums[index + 1].node;
       const next = index === 0 ? null : albums[index - 1].node;

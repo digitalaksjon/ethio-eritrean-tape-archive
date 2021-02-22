@@ -3,7 +3,6 @@ import { themeGet } from '@styled-system/theme-get';
 export const PostDetailsWrapper = styled.div`
   position: relative;
 
-  &.image_left {
     @media (min-width: 991px) {
       display: flex;
       flex-wrap: wrap;
@@ -32,7 +31,7 @@ export const PostDetailsWrapper = styled.div`
         margin-top: 60px;
       }
     }
-  }
+ 
 `;
 
 export const PostTitle = styled.h1`

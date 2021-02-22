@@ -95,15 +95,7 @@ const PostDetails: React.FunctionComponent<PostDetailsProps> = ({
           dangerouslySetInnerHTML={{ __html: description }}
           className="post_des"
         />
-        {tags == null ? null : (
-          <PostTags>
-            {tags.map((tag, index) => (
-              <Link key={index} to={`/tags/${_.kebabCase(tag)}/`}>
-                {`#${tag}`}
-              </Link>
-            ))}
-          </PostTags>
-        )}
+
       </PostDescriptionWrapper>
     </PostDetailsWrapper>
   );

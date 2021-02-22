@@ -40,11 +40,7 @@ export default {
       type: 'bodyPortableText',
       title: 'Description'
     },
-    {
-      name: 'backSide',
-      type: 'mainImage',
-      title: 'Back side'
-    },
+
     {
       name: 'frontCover',
       type: 'mainImage',

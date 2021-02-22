@@ -21,33 +21,51 @@ const AlbumGallery: React.FunctionComponent<GalleryProps> = ({
 }) => {
 
 
-  const front = imageUrlFor(buildImageObj(frontCover))
+  const frontLarge = imageUrlFor(buildImageObj(frontCover))
     .width(800)
     .height(800)
     .fit("fill")
     .auto('format')
     .url()
 
-  const back = imageUrlFor(buildImageObj(backCover))
+
+  const frontThumb = imageUrlFor(buildImageObj(frontCover))
+    .width(400)
+    .height(400)
+    .fit("fill")
+    .auto('format')
+    .url()
+
+
+  const backLarge = imageUrlFor(buildImageObj(backCover))
     .width(800)
     .height(800)
     .fit("fill")
     .auto('format')
     .url()
+
+
+  const backThumb = imageUrlFor(buildImageObj(backCover))
+    .width(400)
+    .height(400)
+    .fit("fill")
+    .auto('format')
+    .url()
+
   const formattedImages = [
     {
-      original: front,
-      thumbnail: front
+      original: frontLarge,
+      thumbnail: frontThumb
     },
     {
-      original: back,
-      thumbnail: back
+      original: backLarge,
+      thumbnail: backThumb
     }
 
   ]
   return (
     <AlbumGalleryWrapper>
-      <ImageGallery items={formattedImages} />;
+      <ImageGallery items={formattedImages} showPlayButton={false} showNav={false} useBrowserFullscreen={false} />
     </AlbumGalleryWrapper>
   );
 };
