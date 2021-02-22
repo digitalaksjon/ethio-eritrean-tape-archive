@@ -7,8 +7,6 @@ exports.createPages = ({ graphql, actions }) => {
 
   const albumPost = path.resolve(`./src/templates/album.tsx`);
 
-
-
   return graphql(`
     fragment SanityImage on SanityMainImage {
       crop {
@@ -29,55 +27,47 @@ exports.createPages = ({ graphql, actions }) => {
       }
       asset {
         _id
-  
-        
       }
     }
-      query {
-        site {
-          siteMetadata {
-            title
-          }
+    query {
+      site {
+        siteMetadata {
+          title
         }
-  
-        albums: allSanityAlbum (
-          sort: { fields: [publishedAt], order: DESC }
-          filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
-        ) {
-          edges {
-            node {
-              id
-              title
-              slug {
-                current
-              }
-              country
-              _rawDescription 
-              _rawExcerpt
-              contributor
-              artist
-              recordLabel {
-                name
-              }
-              backSide {
-                ...SanityImage
-                alt
-              }
-              backCover {
-                ...SanityImage
-                alt
-              }
-              frontCover {
-                ...SanityImage
-                alt
-              }
+      }
+
+      albums: allSanityAlbum(
+        sort: { fields: [publishedAt], order: DESC }
+        filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
+      ) {
+        edges {
+          node {
+            id
+            title
+            slug {
+              current
+            }
+            country
+            _rawDescription
+            _rawExcerpt
+            contributor
+            artist
+            recordLabel {
+              name
+            }
+            backCover {
+              ...SanityImage
+              alt
+            }
+            frontCover {
+              ...SanityImage
+              alt
             }
           }
         }
       }
-    `
-  ).then((result) => {
-
+    }
+  `).then((result) => {
     if (result.errors) {
       throw result.errors;
     }
@@ -86,7 +76,6 @@ exports.createPages = ({ graphql, actions }) => {
     const albums = result.data.albums.edges;
 
     albums.forEach((album, index) => {
-
       const previous =
         index === albums.length - 1 ? null : albums[index + 1].node;
       const next = index === 0 ? null : albums[index - 1].node;
@@ -102,7 +91,6 @@ exports.createPages = ({ graphql, actions }) => {
         },
       });
     });
-
 
     return null;
   });
