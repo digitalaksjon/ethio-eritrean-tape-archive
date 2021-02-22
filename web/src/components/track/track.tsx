@@ -24,9 +24,9 @@ const Track: React.FunctionComponent<TrackProps> = ({
   tracks.forEach((track, index) => (
           allTracks[index] = {
             img: 'https://icon-library.net/images/music-icon-transparent/music-icon-transparent-11.jpg', 
-            name: tracks[index].trackName,
+            name: track.trackName,
             desc: 'Description 1', 
-            src: tracks[index].audioFile.asset.url
+            src: track.audioFile.asset.url
           }
   ))
 

@@ -119,12 +119,24 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 };
 
 // for React-Hot-Loader: react-🔥-dom patch is not detected
-exports.onCreateWebpackConfig = ({ getConfig, stage }) => {
+exports.onCreateWebpackConfig = ({ getConfig, stage, loaders, actions }) => {
   const config = getConfig();
   if (stage.startsWith("develop") && config.resolve) {
     config.resolve.alias = {
       ...config.resolve.alias,
       "react-dom": "@hot-loader/react-dom",
     };
+  }
+  if (stage === "build-html") {
+    actions.setWebpackConfig({
+      module: {
+        rules: [
+          {
+            test: /react-mp3-player/,
+            use: loaders.null(),
+          },
+        ],
+      },
+    });
   }
 };
