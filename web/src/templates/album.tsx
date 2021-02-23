@@ -65,17 +65,13 @@ const AlbumTemplate = (props: any) => {
           title={album.title}
           date={album.releaseDate}
           album={album}
-          front={
+          cover={
             album.frontCover == null
               ? null
               : album.frontCover
           }
-          back={
-            album.backCover == null
-              ? null
-              : album.backCover
-          }
-
+ 
+          artist={album.artist}
           description={description}
           imagePosition="left"
         />

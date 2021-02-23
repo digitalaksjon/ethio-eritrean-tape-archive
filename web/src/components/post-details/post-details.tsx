@@ -5,6 +5,10 @@ import _ from 'lodash';
 
 import Track from '../../components/track/track'
 import AlbumGallery from '../gallery/gallery';
+import AudioPlayer from 'react-playlist-player'
+import { buildImageObj, getBlogUrl } from '../../lib/helpers'
+import { imageUrlFor } from '../../lib/image-url'
+
 
 import {
   PostDetailsWrapper,
@@ -19,10 +23,12 @@ import {
 
 type PostDetailsProps = {
   title: string;
+  artist?: string;
   date?: string;
   album?: object;
   description: any;
   tags?: [];
+  cover?: object;
   className?: string;
   imagePosition?: 'left' | 'top';
 };
@@ -30,9 +36,10 @@ type PostDetailsProps = {
 const PostDetails: React.FunctionComponent<PostDetailsProps> = ({
   title,
   date,
-
   description,
   album,
+  artist,
+  cover,
   tags,
   className,
   imagePosition,
@@ -40,12 +47,32 @@ const PostDetails: React.FunctionComponent<PostDetailsProps> = ({
 }) => {
   const addClass: string[] = ['post_details'];
 
+  var currentPlayList = {
+    playlistCoverUrl: imageUrlFor(buildImageObj(cover))
+    .width(300)
+    .height(300)
+    .fit("fill")
+    .auto('format')
+    .url(),
+    playlistName: title,
+    bandName: artist,
+    songs: [],
+    type: 'album'
+  }
 
+  {album.tracks.map((track, index) => {
+    currentPlayList.songs.push({
+      position: index,
+      songName: track.trackName,
+      songUrl: track.audioFile.asset.url
+    })
+  })}
 
+  console.log(currentPlayList)
   if (className) {
     addClass.push(className);
   }
-  console.log(album.tracks)
+
 
   return (
     <PostDetailsWrapper {...props} className={addClass.join(' ')}>
@@ -69,45 +96,44 @@ const PostDetails: React.FunctionComponent<PostDetailsProps> = ({
             <PostTitle>{title}</PostTitle>
             <PostDate><h4>Relase date</h4> {date}</PostDate>
          
-           <p>
+           <div>
             <h4>Description:</h4> 
               <div>{description}</div>
-           </p>
-            <p>
+           </div>
+            <div>
                 <h4>Genre(s): </h4>
                 {album.genres.map(function(genre, index){
                   return <li key={index}>{genre.name}</li>;
                 })}
-            </p>
+            </div>
 
 
-            <p>
+            <div>
               <h4>Label</h4>
         
                 {album.recordLabel.map(function(label, index){
                   return <span key={index}>{label.name}</span>;
                 })}
      
-            </p>
+            </div>
      
 
-            <p>
+            <div>
               <h4>Distributor </h4>
         
                 {album.distributor.map(function(distributor, index){
                   return <span key={index}>{distributor.name}</span>
                 })}
      
-            </p>
-            <p>
+            </div>
+            <div>
               <h4>Musicians</h4>
               {album.musicians.map(function(musician, index){
                   var instruments = musician.instruments.map(function(instrument,index ){
-                          return <>{instrument.name} /</>;
+                          return <span>{instrument.name} /</span>;
                         });
-                        return <li key={index}>{musician.fullName} ({instruments})</li>;
                       })}
-            </p>
+            </div>
               <div>
                 <h4>Contributor: </h4>{album.contributor}
               </div>
@@ -116,14 +142,17 @@ const PostDetails: React.FunctionComponent<PostDetailsProps> = ({
               </div>
               
             <div>
+  
+              <AudioPlayer currentPlayList={currentPlayList} />
+
               <h4>Tracks: </h4>
               <TracksWrapper>
-              {album.tracks.map(track => {
-                   return <>
-                   
-                   <Track track={track} title={album.title} />
-                   </>
-              })}
+                {album.tracks.map(track => {
+                    return <div>
+                    
+                    <Track track={track} key={track._id} title={album.title} />
+                    </div>
+                })}
               </TracksWrapper>
             </div>
           </>
@@ -131,10 +160,6 @@ const PostDetails: React.FunctionComponent<PostDetailsProps> = ({
       </PostDescriptionWrapper>
     </PostDetailsWrapper>
   );
-};
-
-PostDetails.defaultProps = {
-  imagePosition: 'left',
 };
 
 export default PostDetails;

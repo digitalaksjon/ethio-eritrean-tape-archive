@@ -27,7 +27,7 @@ const Track: React.FunctionComponent<TrackProps> = ({
   return (
     <TrackWrapper>
       <h4>{track.trackName} / {title}</h4>
-      <PlayAudio url={track.audioFile.asset.url} />
+      <PlayAudio url={track.audioFile.asset.url} key={track._id} />
     </TrackWrapper>
   );
 };

@@ -97,6 +97,10 @@ export const PostDescriptionWrapper = styled.div`
   @media (max-width: 575px) {
     margin-top: 30px;
   }
+
+  .audio__player {
+    z-index: 2099;
+  }
 `;
 
 export const PostDescription = styled.div`
