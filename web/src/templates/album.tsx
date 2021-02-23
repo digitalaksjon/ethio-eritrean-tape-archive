@@ -81,7 +81,6 @@ const AlbumTemplate = (props: any) => {
           imagePosition="left"
         />
 
-        <Tracks tracks={album.tracks} />
 
 
       </BlogPostDetailsWrapper>
