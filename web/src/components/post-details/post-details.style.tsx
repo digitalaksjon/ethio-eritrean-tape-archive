@@ -253,3 +253,11 @@ export const PostTags = styled.div`
     color: ${themeGet('primary', '#F28241')};
   }
 `;
+
+export const TracksWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction:row;
+  margin-top: 60px;
+
+`;

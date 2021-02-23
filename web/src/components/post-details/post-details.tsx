@@ -2,8 +2,8 @@ import * as React from 'react';
 import Img from 'gatsby-image';
 import { Link } from 'gatsby';
 import _ from 'lodash';
-import Track from '../../components/track/track'
 
+import Track from '../../components/track/track'
 import AlbumGallery from '../gallery/gallery';
 
 import {
@@ -11,6 +11,7 @@ import {
   PostTitle,
   PostDate,
   PostPreview,
+  TracksWrapper,
   PostDescriptionWrapper,
   PostDescription,
   PostTags,
@@ -66,58 +67,64 @@ const PostDetails: React.FunctionComponent<PostDetailsProps> = ({
 
           <>
             <PostTitle>{title}</PostTitle>
-            <PostDate>Relase date: {date}</PostDate>
+            <PostDate><h4>Relase date</h4> {date}</PostDate>
          
-            <div>Description: <div>{description}</div></div>
-         
-            <div>
-                <span>Genre(s): </span>
+           <p>
+            <h4>Description:</h4> 
+              <div>{description}</div>
+           </p>
+            <p>
+                <h4>Genre(s): </h4>
                 {album.genres.map(function(genre, index){
                   return <li key={index}>{genre.name}</li>;
                 })}
-            </div>
+            </p>
 
 
-            <div>
-              <span>Label: </span>
+            <p>
+              <h4>Label</h4>
         
                 {album.recordLabel.map(function(label, index){
                   return <span key={index}>{label.name}</span>;
                 })}
      
-            </div>
+            </p>
      
 
-            <div>
-              <span>Distributor: </span>
+            <p>
+              <h4>Distributor </h4>
         
                 {album.distributor.map(function(distributor, index){
-                  return <span key={index}>{distributor.name}</span>;
+                  return <span key={index}>{distributor.name}</span>
                 })}
      
-            </div>
-  
-
-            
-            <div>
+            </p>
+            <p>
+              <h4>Musicians</h4>
               {album.musicians.map(function(musician, index){
                   var instruments = musician.instruments.map(function(instrument,index ){
-                          return <li key={index}>Instrument: {instrument.name}</li>;
+                          return <>{instrument.name} /</>;
                         });
-                        return <li key={index}>Musician: {musician.fullName} <ul>{instruments}</ul></li>;
+                        return <li key={index}>{musician.fullName} ({instruments})</li>;
                       })}
-            </div>
+            </p>
               <div>
-                <span>Contributor: </span>{album.contributor}
+                <h4>Contributor: </h4>{album.contributor}
               </div>
               <div>
-                <span>Country / Region: </span>{album.country}
+                <h4>Country / Region: </h4>{album.country}
               </div>
               
             <div>
-              <span>Tracks: </span>
-                <Track tracks={album.tracks} title={album.title} cover={album.frontCover} />
-     
+              <h4>Tracks: </h4>
+              <TracksWrapper>
+              {album.tracks.map(track => {
+                   return <>
+                   
+                   <Track track={track} title={album.title} />
+                   </>
+              })}
+              </TracksWrapper>
             </div>
           </>
         

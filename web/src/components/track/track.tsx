@@ -1,64 +1,44 @@
 import * as React from 'react';
 import { buildImageObj, getBlogUrl } from '../../lib/helpers'
 import { imageUrlFor } from '../../lib/image-url'
-
-import ReactJkMusicPlayer from 'react-jinke-music-player'
-import 'react-jinke-music-player/assets/index.css'
-import options from './options'
-
+import PlayAudio from 'react-simple-audio-player'
 import {
   TrackWrapper
 } from './track.style';
 
 
 type TrackProps = {
-  tracks?: array;
-  cover?: object;
-  title: string;
+  track?: array;
+  title?:string;
 
 };
 
 
-var audioList1 = []
+var playlist = []
 const Track: React.FunctionComponent<TrackProps> = ({
-  tracks,
-  cover,
+  track,
   title
 }) => {
 
-  const coverImage = imageUrlFor(buildImageObj(cover))
-  .width(200)
-  .height(200)
-  .fit("fill")
-  .auto('format')
-  .url()
 
 
 
-
-  tracks.map(track => {
-    audioList1.push(
-    {    
-      name: track.trackName,
-      singer: title,
-      cover: coverImage,
-      musicSrc: track.audioFile.asset.url,
-    }
-  )
-  });
 
   return (
     <TrackWrapper>
-      <ul>
-        {tracks.map(track => {
-          return <li>{track.trackName}</li>
-        })}
-      </ul>
-      <ReactJkMusicPlayer audioLists={audioList1} {...options} />
-      
+      <h4>{track.trackName} / {title}</h4>
+      <PlayAudio url={track.audioFile.asset.url} />
     </TrackWrapper>
   );
 };
 
 export default Track;
+
+const options = {
+  playlist: playlist,
+  autoplay: false,
+  autoplayDelayInSeconds: 2.1,
+  style: { position: 'relative' },
+  controls: ['playpause', 'forwardskip', 'progressdisplay']
+}
 
