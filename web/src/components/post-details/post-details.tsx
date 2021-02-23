@@ -2,6 +2,7 @@ import * as React from 'react';
 import Img from 'gatsby-image';
 import { Link } from 'gatsby';
 import _ from 'lodash';
+import Track from '../../components/track/track'
 
 import AlbumGallery from '../gallery/gallery';
 
@@ -18,8 +19,7 @@ import {
 type PostDetailsProps = {
   title: string;
   date?: string;
-  front?: any;
-  back?: any;
+  album?: object;
   description: any;
   tags?: [];
   className?: string;
@@ -29,9 +29,9 @@ type PostDetailsProps = {
 const PostDetails: React.FunctionComponent<PostDetailsProps> = ({
   title,
   date,
-  front,
-  back,
+
   description,
+  album,
   tags,
   className,
   imagePosition,
@@ -44,65 +44,90 @@ const PostDetails: React.FunctionComponent<PostDetailsProps> = ({
   if (className) {
     addClass.push(className);
   }
+  console.log(album.tracks)
 
   return (
     <PostDetailsWrapper {...props} className={addClass.join(' ')}>
 
-      {imagePosition === 'left' ? (
         <>
-          {front == null ? null : (
+          {album.frontCover == null ? null : (
             <PostPreview className="post_preview">
 
-              <AlbumGallery frontCover={front} backCover={back} />
+              <AlbumGallery frontCover={album.frontCover} backCover={album.backCover} />
 
             </PostPreview>
           )}
         </>
-      ) : (
-          ''
-        )}
 
-      {imagePosition === 'top' ? (
-        <>
-          <PostTitle>{title}</PostTitle>
-          <PostDate>{date}</PostDate>
-        </>
-      ) : (
-          ''
-        )}
 
-      {imagePosition === 'top' ? (
-        <>
-          {front == null ? null : (
-            <PostPreview className="post_preview">
-              <Img fluid={front} alt={title} />
-            </PostPreview>
-          )}
-        </>
-      ) : (
-          ''
-        )}
+
+
       <PostDescriptionWrapper className="post_des_wrapper">
-        {imagePosition === 'left' ? (
+
           <>
             <PostTitle>{title}</PostTitle>
-            <PostDate>{date}</PostDate>
-          </>
-        ) : (
-            ''
-          )}
-        <PostDescription
-          dangerouslySetInnerHTML={{ __html: description }}
-          className="post_des"
-        />
+            <PostDate>Relase date: {date}</PostDate>
+         
+            <div>Description: <div>{description}</div></div>
+         
+            <div>
+                <span>Genre(s): </span>
+                {album.genres.map(function(genre, index){
+                  return <li key={index}>{genre.name}</li>;
+                })}
+            </div>
 
+
+            <div>
+              <span>Label: </span>
+        
+                {album.recordLabel.map(function(label, index){
+                  return <span key={index}>{label.name}</span>;
+                })}
+     
+            </div>
+     
+
+            <div>
+              <span>Distributor: </span>
+        
+                {album.distributor.map(function(distributor, index){
+                  return <span key={index}>{distributor.name}</span>;
+                })}
+     
+            </div>
+  
+
+            
+            <div>
+              {album.musicians.map(function(musician, index){
+                  var instruments = musician.instruments.map(function(instrument,index ){
+                          return <li key={index}>Instrument: {instrument.name}</li>;
+                        });
+                        return <li key={index}>Musician: {musician.fullName} <ul>{instruments}</ul></li>;
+                      })}
+            </div>
+              <div>
+                <span>Contributor: </span>{album.contributor}
+              </div>
+              <div>
+                <span>Country / Region: </span>{album.country}
+              </div>
+              
+            <div>
+              <span>Tracks: </span>
+                <Track tracks={album.tracks} title={album.title} cover={album.frontCover} />
+     
+            </div>
+          </>
+        
       </PostDescriptionWrapper>
     </PostDetailsWrapper>
   );
 };
 
 PostDetails.defaultProps = {
-  imagePosition: 'top',
+  imagePosition: 'left',
 };
 
 export default PostDetails;

@@ -1,7 +1,10 @@
 import * as React from 'react';
-import Playlist from 'react-mp3-player';
 import { buildImageObj, getBlogUrl } from '../../lib/helpers'
 import { imageUrlFor } from '../../lib/image-url'
+
+import ReactJkMusicPlayer from 'react-jinke-music-player'
+import 'react-jinke-music-player/assets/index.css'
+import options from './options'
 
 import {
   TrackWrapper
@@ -9,40 +12,53 @@ import {
 
 
 type TrackProps = {
-  tracks: any;
+  tracks?: array;
+  cover?: object;
+  title: string;
 
 };
 
 
+var audioList1 = []
 const Track: React.FunctionComponent<TrackProps> = ({
-  tracks
+  tracks,
+  cover,
+  title
 }) => {
 
-  var allTracks = []
-
-
-  tracks.forEach((track, index) => (
-          allTracks[index] = {
-            img: 'https://icon-library.net/images/music-icon-transparent/music-icon-transparent-11.jpg', 
-            name: track.trackName,
-            desc: 'Description 1', 
-            src: track.audioFile.asset.url
-          }
-  ))
+  const coverImage = imageUrlFor(buildImageObj(cover))
+  .width(200)
+  .height(200)
+  .fit("fill")
+  .auto('format')
+  .url()
 
 
 
-  const playlistOverideStylingOpts = {
-    breakpoint: {
-      maxWidth: 768
+
+  tracks.map(track => {
+    audioList1.push(
+    {    
+      name: track.trackName,
+      singer: title,
+      cover: coverImage,
+      musicSrc: track.audioFile.asset.url,
     }
-  };
+  )
+  });
+
   return (
     <TrackWrapper>
-      <Playlist tracks={allTracks} opts={playlistOverideStylingOpts}  autoPlay="0" />
+      <ul>
+        {tracks.map(track => {
+          return <li>{track.trackName}</li>
+        })}
+      </ul>
+      <ReactJkMusicPlayer audioLists={audioList1} {...options} />
       
     </TrackWrapper>
   );
 };
 
 export default Track;
+

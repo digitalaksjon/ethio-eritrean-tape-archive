@@ -54,8 +54,6 @@ const AlbumTemplate = (props: any) => {
 
 
 
-
-
   return (
     <Layout>
       <SEO
@@ -66,6 +64,7 @@ const AlbumTemplate = (props: any) => {
         <PostDetails
           title={album.title}
           date={album.releaseDate}
+          album={album}
           front={
             album.frontCover == null
               ? null
@@ -160,6 +159,9 @@ fragment SanityImage on SanityMainImage {
       releaseDate
       _rawExcerpt
       contributor
+      genres {
+        name
+      }
       tracks {
         trackName
         audioFile {
@@ -169,9 +171,20 @@ fragment SanityImage on SanityMainImage {
         }
       }
       artist
+      musicians {
+        fullName
+        instruments {
+          name
+        }
+      }
       recordLabel {
         name
       }
+      contributor
+      distributor {
+        name
+      }
+      country
       frontCover {
         ...SanityImage
         alt
