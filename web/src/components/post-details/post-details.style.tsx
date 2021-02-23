@@ -98,9 +98,10 @@ export const PostDescriptionWrapper = styled.div`
     margin-top: 30px;
   }
 
-  .audio__player {
-    z-index: 2099;
+  h4 {
+    margin: 25px auto 0 auto;
   }
+
 `;
 
 export const PostDescription = styled.div`
@@ -259,9 +260,6 @@ export const PostTags = styled.div`
 `;
 
 export const TracksWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction:row;
-  margin-top: 60px;
+
 
 `;

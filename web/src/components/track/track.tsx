@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { buildImageObj, getBlogUrl } from '../../lib/helpers'
 import { imageUrlFor } from '../../lib/image-url'
-import PlayAudio from 'react-simple-audio-player'
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css';
 import {
   TrackWrapper
 } from './track.style';
@@ -27,18 +28,14 @@ const Track: React.FunctionComponent<TrackProps> = ({
   return (
     <TrackWrapper>
       <h4>{track.trackName} / {title}</h4>
-      <PlayAudio url={track.audioFile.asset.url} key={track._id} />
+      <AudioPlayer        
+        
+        src={track.audioFile.asset.url}
+        onPlay={e => console.log("onPlay")}
+        // other props here
+      />
     </TrackWrapper>
   );
 };
 
 export default Track;
-
-const options = {
-  playlist: playlist,
-  autoplay: false,
-  autoplayDelayInSeconds: 2.1,
-  style: { position: 'relative' },
-  controls: ['playpause', 'forwardskip', 'progressdisplay']
-}
-

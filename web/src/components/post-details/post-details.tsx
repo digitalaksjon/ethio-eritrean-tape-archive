@@ -5,7 +5,6 @@ import _ from 'lodash';
 
 import Track from '../../components/track/track'
 import AlbumGallery from '../gallery/gallery';
-import AudioPlayer from 'react-playlist-player'
 import { buildImageObj, getBlogUrl } from '../../lib/helpers'
 import { imageUrlFor } from '../../lib/image-url'
 
@@ -143,7 +142,6 @@ const PostDetails: React.FunctionComponent<PostDetailsProps> = ({
               
             <div>
   
-              <AudioPlayer currentPlayList={currentPlayList} />
 
               <h4>Tracks: </h4>
               <TracksWrapper>
